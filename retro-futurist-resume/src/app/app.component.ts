@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   currentTheme: any;
   themeName: 'green' | 'amber' = 'green';
   dataLoaded = false;
+  loadingScreenComplete = false;
 
   constructor(
     private themeService: ThemeService,
@@ -39,31 +40,30 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Load resume data from JSON file
+    // Load resume data from JSON file immediately
     this.resumeService.loadResumeData().subscribe({
       next: (data) => {
         console.log('Resume data loaded successfully', data);
         this.dataLoaded = true;
+        this.checkIfReadyToShow();
       },
       error: (error) => {
         console.error('Error loading resume data:', error);
-        this.dataLoaded = true; // Still show the app even if data fails
+        this.dataLoaded = true;
+        this.checkIfReadyToShow();
       },
     });
   }
 
   onLoadingComplete(): void {
-    // Only show terminal when both loading is complete AND data is loaded
-    if (this.dataLoaded) {
+    this.loadingScreenComplete = true;
+    this.checkIfReadyToShow();
+  }
+
+  private checkIfReadyToShow(): void {
+    // Only show terminal when BOTH loading screen is complete AND data is loaded
+    if (this.loadingScreenComplete && this.dataLoaded) {
       this.isLoading = false;
-    } else {
-      // Wait a bit more for data to load
-      const checkData = setInterval(() => {
-        if (this.dataLoaded) {
-          this.isLoading = false;
-          clearInterval(checkData);
-        }
-      }, 100);
     }
   }
 

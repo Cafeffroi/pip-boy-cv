@@ -27,18 +27,12 @@ export class LoadingScreenComponent implements OnInit {
 
   private simulateLoading(): void {
     const loadingSteps = [
-      { progress: 15, delay: 300 },
-      { progress: 18, delay: 100 },
-      { progress: 35, delay: 500 },
-      { progress: 38, delay: 100 },
-      { progress: 42, delay: 200 },
-      { progress: 58, delay: 600 },
-      { progress: 62, delay: 150 },
-      { progress: 75, delay: 400 },
-      { progress: 78, delay: 100 },
-      { progress: 85, delay: 300 },
-      { progress: 92, delay: 200 },
-      { progress: 100, delay: 300 },
+      { progress: 25, delay: 100 },
+      { progress: 45, delay: 400 },
+      { progress: 50, delay: 100 },
+      { progress: 75, delay: 100 },
+      { progress: 95, delay: 200 },
+      { progress: 100, delay: 200 },
     ];
 
     let currentStep = 0;
@@ -51,7 +45,7 @@ export class LoadingScreenComponent implements OnInit {
         const startProgress = this.loadingProgress;
         const targetProgress = step.progress;
         const steps = targetProgress - startProgress;
-        const stepDelay = 50;
+        const stepDelay = 30; // Faster increment
 
         let currentIncrement = 0;
         const incrementInterval = setInterval(() => {
@@ -72,7 +66,7 @@ export class LoadingScreenComponent implements OnInit {
         // Loading complete
         setTimeout(() => {
           this.loadingComplete.emit();
-        }, 500);
+        }, 300);
       }
     };
 

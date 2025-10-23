@@ -11,10 +11,10 @@
   --glow-color: rgba(0, 255, 0, 0.5);
   
   // Base font size
-  --base-font-size: 16px;
-  --small-font-size: 14px;
-  --large-font-size: 18px;
-  --title-font-size: 20px;
+  --base-font-size: 18px;
+  --small-font-size: 16px;
+  --large-font-size: 20px;
+  --title-font-size: 22px;
 }
 
 body {
@@ -53,7 +53,7 @@ app-root {
   display: block;
   width: 100vw;
   height: 100vh;
-  animation: flicker 0.15s infinite;
+  // animation: flicker 0.15s infinite;
 }
 
 // Additional CRT effects

@@ -35,12 +35,12 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0.05) 50%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 11;
-  animation: scanline-move 8s linear infinite;
+  animation: scanline-move 3s linear infinite;
 }
 
 @keyframes scanline-move {
@@ -59,7 +59,7 @@
 }
 
 .terminal-wrapper {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   word-wrap: break-word;

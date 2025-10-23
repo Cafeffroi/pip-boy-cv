@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { ResumeDataService } from '../../services/resume-data.service';
 import { ThemeService } from '../../services/theme.service';
 import { ResumeData } from '../../models/resume.model';
@@ -19,6 +20,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
   currentTheme: any;
   displayText: string = '';
   private subscription: Subscription = new Subscription();
+  private typewriterInterval: any;
 
   constructor(
     private resumeService: ResumeDataService,
@@ -33,38 +35,58 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
     );
 
     this.subscription.add(
-      this.resumeService.resumeData$.subscribe((data) => {
-        this.resumeData = data;
-        if (data && this.section === 'resume-full') {
-          this.typewriterEffect();
-        }
-      })
+      this.resumeService.resumeData$
+        .pipe(filter((data) => data !== null))
+        .subscribe((data) => {
+          this.resumeData = data;
+          console.log('Resume data received in component:', data);
+          if (this.section === 'resume-full') {
+            // Small delay to ensure the view is ready
+            setTimeout(() => this.typewriterEffect(), 100);
+          }
+        })
     );
   }
 
   ngOnChanges(): void {
     if (this.section === 'resume-full' && this.resumeData) {
+      // Clear previous interval if exists
+      if (this.typewriterInterval) {
+        clearInterval(this.typewriterInterval);
+      }
       this.typewriterEffect();
     }
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    if (this.typewriterInterval) {
+      clearInterval(this.typewriterInterval);
+    }
   }
 
   typewriterEffect(): void {
-    if (!this.resumeData) return;
+    if (!this.resumeData) {
+      console.log('No resume data available for typewriter effect');
+      return;
+    }
+
+    // Clear any existing interval
+    if (this.typewriterInterval) {
+      clearInterval(this.typewriterInterval);
+    }
 
     this.displayText = '';
     const fullText = this.resumeData.resume.full;
     let index = 0;
 
-    const interval = setInterval(() => {
+    this.typewriterInterval = setInterval(() => {
       if (index < fullText.length) {
         this.displayText += fullText[index];
         index++;
       } else {
-        clearInterval(interval);
+        clearInterval(this.typewriterInterval);
+        this.typewriterInterval = null;
       }
     }, 5);
   }
