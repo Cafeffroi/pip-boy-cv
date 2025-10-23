@@ -1,0 +1,46 @@
+<div class="menu-container">
+  <div
+    class="menu-header"
+    [ngStyle]="{ 'border-bottom': '2px solid ' + currentTheme?.primary }"
+  >
+    <pre>
+╔════════════════════════════════════════╗
+║     ATOMIC CORP PERSONNEL FILE         ║
+╚════════════════════════════════════════╝</pre
+    >
+  </div>
+
+  <div class="menu-content">
+    <div class="menu-title">SELECT OPTION:</div>
+
+    <div
+      class="menu-item"
+      (click)="navigateTo('resume-full')"
+      [ngStyle]="{ color: currentTheme?.primary }"
+    >
+      &gt; RESUME
+    </div>
+
+    <div class="submenu">
+      <div class="submenu-item" (click)="navigateTo('resume-full')">
+        - Full Resume
+      </div>
+      <div class="submenu-item" (click)="navigateTo('experience')">
+        - Experience
+      </div>
+      <div class="submenu-item" (click)="navigateTo('skills')">- Skills</div>
+      <div class="submenu-item" (click)="navigateTo('schools')">
+        - Education
+      </div>
+      <div class="submenu-item" (click)="navigateTo('hobbies')">- Hobbies</div>
+    </div>
+
+    <div
+      class="menu-item"
+      (click)="navigateTo('contact')"
+      [ngStyle]="{ color: currentTheme?.primary }"
+    >
+      &gt; CONTACT
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Courier New', monospace;
+  font-size: var(--base-font-size);
+  overflow: auto;
+  position: relative;
+}
+
+// Static scanline overlay
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+// Moving scanline effect
+.scanline-moving {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 11;
+  animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.terminal-content {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 5px var(--glow-color);
+}
+
+.terminal-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  
+  .back-button, .theme-button {
+    background-color: transparent;
+    padding: 8px 15px;
+    font-family: 'Courier New', monospace;
+    font-size: var(--small-font-size);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--background-color) !important;
+    }
+  }
+  
+  .back-button {
+    font-size: var(--base-font-size);
+  }
+  
+  .theme-button {
+    margin-left: auto;
+  }
+}
+
+.content-area {
+  animation: fadeIn 0.5s ease-in;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border: 1px solid var(--background-color);
+}

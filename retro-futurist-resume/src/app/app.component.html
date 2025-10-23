@@ -1,0 +1,63 @@
+<div
+  class="app-container"
+  [ngStyle]="{
+    'background-color': currentTheme?.background,
+    color: currentTheme?.primary
+  }"
+>
+  <!-- CRT Scanline Effect -->
+  <div class="scanline-overlay"></div>
+  <div class="scanline-moving"></div>
+
+  <!-- Loading Screen -->
+  <app-loading-screen *ngIf="isLoading" (loadingComplete)="onLoadingComplete()">
+  </app-loading-screen>
+
+  <!-- Terminal Content -->
+  <div *ngIf="!isLoading" class="terminal-content">
+    <div class="terminal-wrapper">
+      <!-- Header with Back and Theme buttons -->
+      <div class="terminal-header">
+        <button
+          *ngIf="currentView !== 'menu'"
+          (click)="goBack()"
+          class="back-button"
+          [ngStyle]="{
+            border: '1px solid ' + currentTheme?.primary,
+            color: currentTheme?.primary
+          }"
+        >
+          &lt; BACK
+        </button>
+
+        <button
+          (click)="toggleTheme()"
+          class="theme-button"
+          [ngStyle]="{
+            border: '1px solid ' + currentTheme?.primary,
+            color: currentTheme?.primary
+          }"
+        >
+          [{{ themeName === "green" ? "AMBER" : "GREEN" }}]
+        </button>
+      </div>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <app-terminal-menu
+          *ngIf="currentView === 'menu'"
+          (viewChange)="onViewChange($event)"
+        >
+        </app-terminal-menu>
+
+        <app-resume-sections
+          *ngIf="currentView !== 'menu' && currentView !== 'contact'"
+          [section]="currentView"
+        >
+        </app-resume-sections>
+
+        <app-contact-form *ngIf="currentView === 'contact'"> </app-contact-form>
+      </div>
+    </div>
+  </div>
+</div>

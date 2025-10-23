@@ -1,0 +1,74 @@
+<div class="resume-container" *ngIf="resumeData">
+  <!-- Full Resume -->
+  <div *ngIf="section === 'resume-full'" class="full-resume">
+    <pre>{{ displayText }}</pre>
+  </div>
+
+  <!-- Experience -->
+  <div *ngIf="section === 'experience'" class="experience-section">
+    <div class="section-title">WORK EXPERIENCE:</div>
+    <div
+      *ngFor="let exp of resumeData.resume.experience"
+      class="experience-item"
+      [ngStyle]="{ 'border-left': '2px solid ' + currentTheme?.primary }"
+    >
+      <div class="exp-title">{{ exp.title }}</div>
+      <div class="exp-meta" [ngStyle]="{ color: currentTheme?.secondary }">
+        {{ exp.company }} | {{ exp.period }}
+      </div>
+      <div class="exp-description">{{ exp.description }}</div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div *ngIf="section === 'skills'" class="skills-section">
+    <div class="section-title">TECHNICAL SKILLS:</div>
+    <div class="skills-list">
+      <div *ngFor="let skill of resumeData.resume.skills" class="skill-item">
+        <div class="skill-name">&gt; {{ skill.name }}</div>
+        <div class="skill-level">
+          <div class="skill-blocks">
+            <span
+              *ngFor="let filled of getSkillBlocks(skill.level)"
+              class="skill-block"
+              [class.filled]="filled"
+              [ngStyle]="{
+                border: '1px solid ' + currentTheme?.primary,
+                'background-color': filled
+                  ? currentTheme?.primary
+                  : 'transparent'
+              }"
+            >
+            </span>
+          </div>
+          <span class="skill-level-text">{{ skill.level }}/10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div *ngIf="section === 'schools'" class="education-section">
+    <div class="section-title">EDUCATION:</div>
+    <div
+      *ngFor="let school of resumeData.resume.schools"
+      class="education-item"
+      [ngStyle]="{ 'border-left': '2px solid ' + currentTheme?.primary }"
+    >
+      <div class="edu-degree">{{ school.degree }}</div>
+      <div class="edu-meta" [ngStyle]="{ color: currentTheme?.secondary }">
+        {{ school.school }} | {{ school.year }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Hobbies -->
+  <div *ngIf="section === 'hobbies'" class="hobbies-section">
+    <div class="section-title">PERSONAL INTERESTS:</div>
+    <div *ngFor="let hobby of resumeData.resume.hobbies" class="hobby-item">
+      * {{ hobby }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!resumeData" class="loading-message">LOADING DATA...</div>

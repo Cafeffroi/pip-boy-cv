@@ -1,0 +1,117 @@
+.resume-container {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-size: var(--title-font-size);
+  font-weight: bold;
+}
+
+.full-resume {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  
+  pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+.experience-section, .education-section {
+  .experience-item, .education-item {
+    margin-bottom: 25px;
+    padding-left: 15px;
+  }
+  
+  .exp-title, .edu-degree {
+    font-weight: bold;
+    font-size: var(--large-font-size);
+    margin-bottom: 5px;
+  }
+  
+  .exp-meta, .edu-meta {
+    font-size: var(--small-font-size);
+    margin-bottom: 8px;
+  }
+  
+  .exp-description {
+    margin-top: 8px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+.skills-section {
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .skill-item {
+    .skill-name {
+      font-size: var(--large-font-size);
+      margin-bottom: 8px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+    .skill-level {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      
+      .skill-blocks {
+        display: flex;
+        gap: 4px;
+        
+        .skill-block {
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+          transition: all 0.3s;
+          
+          &.filled {
+            box-shadow: 0 0 8px var(--glow-color);
+          }
+        }
+      }
+      
+      .skill-level-text {
+        font-size: var(--small-font-size);
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.hobbies-section {
+  .hobby-item {
+    margin-bottom: 12px;
+    padding-left: 15px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+.loading-message {
+  font-size: var(--large-font-size);
+  text-align: center;
+  padding: 40px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}

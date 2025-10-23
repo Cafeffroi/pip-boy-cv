@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #00ff00;
+  --secondary-color: #00aa00;
+  --background-color: #001100;
+  --glow-color: rgba(0, 255, 0, 0.5);
+  
+  // Base font size
+  --base-font-size: 16px;
+  --small-font-size: 14px;
+  --large-font-size: 18px;
+  --title-font-size: 20px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: var(--base-font-size);
+  overflow: hidden;
+}
+
+// CRT screen flicker effect
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.97;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.97;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+app-root {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  animation: flicker 0.15s infinite;
+}
+
+// Additional CRT effects
+.app-container::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 2px;
+  z-index: 9;
+  pointer-events: none;
+}
+
+// Vignette effect for CRT feel
+.app-container::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: 9;
+  pointer-events: none;
+}
