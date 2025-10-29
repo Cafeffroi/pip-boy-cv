@@ -1,7 +1,7 @@
 .app-container {
   width: 100vw;
   height: 100vh;
-  font-family: 'Courier New', monospace;
+  font-family: 'VT323','Courier New', monospace;
   font-size: var(--base-font-size);
   overflow: auto;
   position: relative;
@@ -76,7 +76,7 @@
   .back-button, .theme-button {
     background-color: transparent;
     padding: 8px 15px;
-    font-family: 'Courier New', monospace;
+    font-family: 'VT323', 'Courier New', monospace;
     font-size: var(--small-font-size);
     cursor: pointer;
     transition: all 0.2s;

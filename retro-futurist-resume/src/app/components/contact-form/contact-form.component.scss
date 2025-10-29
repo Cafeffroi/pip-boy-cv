@@ -29,7 +29,7 @@
       width: 100%;
       background-color: transparent;
       padding: 10px;
-      font-family: 'Courier New', monospace;
+      font-family: 'VT323', 'Courier New', monospace;
       font-size: var(--base-font-size);
       box-sizing: border-box;
       
@@ -48,7 +48,7 @@
   .submit-button {
     background-color: transparent;
     padding: 12px 35px;
-    font-family: 'Courier New', monospace;
+    font-family: 'VT323','Courier New', monospace;
     font-size: var(--base-font-size);
     cursor: pointer;
     transition: all 0.2s;

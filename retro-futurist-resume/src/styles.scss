@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Monofonto';
+  src: url('/assets/fonts/monofonto.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'VT323';
+  src: url('/assets/fonts/VT323.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,15 +25,15 @@
   --glow-color: rgba(0, 255, 0, 0.5);
   
   // Base font size
-  --base-font-size: 18px;
-  --small-font-size: 16px;
-  --large-font-size: 20px;
+  --base-font-size: 22px;
+  --small-font-size: 20px;
+  --large-font-size: 26px;
   --title-font-size: 22px;
 }
 
 body {
   margin: 0;
-  font-family: 'Courier New', monospace;
+  font-family: 'VT323', 'Courier New', monospace;
   font-size: var(--base-font-size);
   overflow: hidden;
 }
