@@ -4,6 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AudioService {
+  private keyboardAudio: HTMLAudioElement;
+
+  constructor() {
+    // Preload the keyboard sound for better performance
+    this.keyboardAudio = new Audio('assets/sounds/keyboard-fx-1.mp3');
+    this.keyboardAudio.volume = 0.3; // Adjust volume (0.0 to 1.0)
+  }
+
   playKeySound(): void {
     try {
       const audioContext = new (window.AudioContext ||
@@ -22,6 +30,20 @@ export class AudioService {
       oscillator.stop(audioContext.currentTime + 0.05);
     } catch (e) {
       // Silently fail if audio context not available
+    }
+  }
+
+  playKeyboardSound(): void {
+    try {
+      // Clone the audio to allow overlapping sounds
+      const sound = this.keyboardAudio.cloneNode() as HTMLAudioElement;
+      sound.volume = 0.3; // Adjust volume as needed
+      sound.play().catch((err) => {
+        // Silently fail if autoplay is blocked
+        console.debug('Audio play failed:', err);
+      });
+    } catch (e) {
+      console.debug('Audio error:', e);
     }
   }
 }

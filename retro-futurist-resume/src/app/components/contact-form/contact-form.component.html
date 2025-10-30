@@ -17,7 +17,6 @@
       <input
         type="text"
         [(ngModel)]="contactForm.name"
-        (input)="onInput()"
         [ngStyle]="{
           border: '1px solid ' + currentTheme?.primary,
           color: currentTheme?.primary
@@ -30,7 +29,6 @@
       <input
         type="email"
         [(ngModel)]="contactForm.email"
-        (input)="onInput()"
         [ngStyle]="{
           border: '1px solid ' + currentTheme?.primary,
           color: currentTheme?.primary
@@ -42,7 +40,6 @@
       <label>{{ "CONTACT.MESSAGE" | translate }}</label>
       <textarea
         [(ngModel)]="contactForm.message"
-        (input)="onInput()"
         rows="6"
         [ngStyle]="{
           border: '1px solid ' + currentTheme?.primary,

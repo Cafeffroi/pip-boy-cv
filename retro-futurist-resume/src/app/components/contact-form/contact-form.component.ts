@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ThemeService } from '../../services/theme.service';
-import { AudioService } from '../../services/audio.service';
 import { ContactForm } from '../../models/resume.model';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -23,17 +22,10 @@ export class ContactFormComponent {
   formSubmitted = false;
   currentTheme: any;
 
-  constructor(
-    private themeService: ThemeService,
-    private audioService: AudioService
-  ) {
+  constructor(private themeService: ThemeService) {
     this.themeService.currentTheme$.subscribe((theme) => {
       this.currentTheme = this.themeService.getThemeColors(theme);
     });
-  }
-
-  onInput(): void {
-    this.audioService.playKeySound();
   }
 
   onSubmit(): void {

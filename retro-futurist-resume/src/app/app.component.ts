@@ -11,6 +11,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ThemeService } from './services/theme.service';
 import { ResumeDataService } from './services/resume-data.service';
 import { LanguageService } from './services/language.service';
+import { AudioService } from './services/audio.service';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { TerminalMenuComponent } from './components/terminal-menu/terminal-menu.component';
 import { ResumeSectionsComponent } from './components/resume-sections/resume-sections.component';
@@ -60,7 +61,8 @@ export class AppComponent implements OnInit {
     private themeService: ThemeService,
     private resumeService: ResumeDataService,
     private languageService: LanguageService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private audioService: AudioService
   ) {
     this.themeService.currentTheme$.subscribe((theme) => {
       this.themeName = theme;
@@ -71,6 +73,37 @@ export class AppComponent implements OnInit {
     this.languageService.currentLanguage$.subscribe((lang) => {
       this.currentLanguage = lang;
     });
+  }
+
+  // Global keyboard listener for sound effects
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    if (!this.isLoading) {
+      // Don't play sound for special keys
+      const specialKeys = [
+        'Shift',
+        'Control',
+        'Alt',
+        'Meta',
+        'Tab',
+        'CapsLock',
+        'Escape',
+        'ArrowUp',
+        'ArrowDown',
+        'ArrowLeft',
+        'ArrowRight',
+        'Home',
+        'End',
+        'PageUp',
+        'PageDown',
+        'Insert',
+        'Delete',
+      ];
+
+      if (!specialKeys.includes(event.key)) {
+        this.audioService.playKeyboardSound();
+      }
+    }
   }
 
   // Listen for clicks but be smart about it
@@ -124,6 +157,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.resumeService.loadResumeData().subscribe({
       next: (data) => {
+        console.log('Resume data loaded successfully', data);
         this.dataLoaded = true;
         this.checkIfReadyToShow();
       },
