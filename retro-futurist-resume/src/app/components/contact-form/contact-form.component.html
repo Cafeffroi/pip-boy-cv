@@ -1,5 +1,5 @@
 <div class="contact-container">
-  <div class="section-title">CONTACT FORM:</div>
+  <div class="section-title">{{ "CONTACT.TITLE" | translate }}</div>
 
   <div
     *ngIf="formSubmitted"
@@ -8,12 +8,12 @@
       border: '2px solid ' + currentTheme?.primary
     }"
   >
-    MESSAGE TRANSMITTED SUCCESSFULLY
+    {{ "CONTACT.SUCCESS" | translate }}
   </div>
 
   <div *ngIf="!formSubmitted" class="form-container">
     <div class="form-group">
-      <label>NAME:</label>
+      <label>{{ "CONTACT.NAME" | translate }}</label>
       <input
         type="text"
         [(ngModel)]="contactForm.name"
@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group">
-      <label>EMAIL:</label>
+      <label>{{ "CONTACT.EMAIL" | translate }}</label>
       <input
         type="email"
         [(ngModel)]="contactForm.email"
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group">
-      <label>MESSAGE:</label>
+      <label>{{ "CONTACT.MESSAGE" | translate }}</label>
       <textarea
         [(ngModel)]="contactForm.message"
         (input)="onInput()"
@@ -60,7 +60,7 @@
         color: currentTheme?.primary
       }"
     >
-      [TRANSMIT MESSAGE]
+      {{ "CONTACT.SUBMIT" | translate }}
     </button>
   </div>
 </div>

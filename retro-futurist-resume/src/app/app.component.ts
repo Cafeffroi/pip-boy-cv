@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { ThemeService } from './services/theme.service';
 import { ResumeDataService } from './services/resume-data.service';
+import { LanguageService } from './services/language.service';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { TerminalMenuComponent } from './components/terminal-menu/terminal-menu.component';
 import { ResumeSectionsComponent } from './components/resume-sections/resume-sections.component';
@@ -12,6 +14,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
   standalone: true,
   imports: [
     CommonModule,
+    TranslateModule,
     LoadingScreenComponent,
     TerminalMenuComponent,
     ResumeSectionsComponent,
@@ -27,20 +30,25 @@ export class AppComponent implements OnInit {
   themeName: 'green' | 'amber' = 'green';
   dataLoaded = false;
   loadingScreenComplete = false;
+  currentLanguage = 'fr';
 
   constructor(
     private themeService: ThemeService,
-    private resumeService: ResumeDataService
+    private resumeService: ResumeDataService,
+    private languageService: LanguageService
   ) {
     this.themeService.currentTheme$.subscribe((theme) => {
       this.themeName = theme;
       this.currentTheme = this.themeService.getThemeColors(theme);
       this.updateCSSVariables();
     });
+
+    this.languageService.currentLanguage$.subscribe((lang) => {
+      this.currentLanguage = lang;
+    });
   }
 
   ngOnInit(): void {
-    // Load resume data from JSON file immediately
     this.resumeService.loadResumeData().subscribe({
       next: (data) => {
         console.log('Resume data loaded successfully', data);
@@ -61,7 +69,6 @@ export class AppComponent implements OnInit {
   }
 
   private checkIfReadyToShow(): void {
-    // Only show terminal when BOTH loading screen is complete AND data is loaded
     if (this.loadingScreenComplete && this.dataLoaded) {
       this.isLoading = false;
     }
@@ -77,6 +84,10 @@ export class AppComponent implements OnInit {
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
+  }
+
+  toggleLanguage(): void {
+    this.languageService.toggleLanguage();
   }
 
   updateCSSVariables(): void {

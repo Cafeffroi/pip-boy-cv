@@ -11,28 +11,32 @@
   </div>
 
   <div class="menu-content">
-    <div class="menu-title">SELECT OPTION:</div>
+    <div class="menu-title">{{ "MENU.SELECT" | translate }}</div>
 
     <div
       class="menu-item"
       (click)="navigateTo('resume-full')"
       [ngStyle]="{ color: currentTheme?.primary }"
     >
-      &gt; RESUME
+      &gt; {{ "MENU.RESUME" | translate }}
     </div>
 
     <div class="submenu">
       <div class="submenu-item" (click)="navigateTo('resume-full')">
-        - Full Resume
+        - {{ "MENU.FULL_RESUME" | translate }}
       </div>
       <div class="submenu-item" (click)="navigateTo('experience')">
-        - Experience
+        - {{ "MENU.EXPERIENCE" | translate }}
       </div>
-      <div class="submenu-item" (click)="navigateTo('skills')">- Skills</div>
+      <div class="submenu-item" (click)="navigateTo('skills')">
+        - {{ "MENU.SKILLS" | translate }}
+      </div>
       <div class="submenu-item" (click)="navigateTo('schools')">
-        - Education
+        - {{ "MENU.EDUCATION" | translate }}
       </div>
-      <div class="submenu-item" (click)="navigateTo('hobbies')">- Hobbies</div>
+      <div class="submenu-item" (click)="navigateTo('hobbies')">
+        - {{ "MENU.HOBBIES" | translate }}
+      </div>
     </div>
 
     <div
@@ -40,7 +44,7 @@
       (click)="navigateTo('contact')"
       [ngStyle]="{ color: currentTheme?.primary }"
     >
-      &gt; CONTACT
+      &gt; {{ "MENU.CONTACT" | translate }}
     </div>
   </div>
 </div>

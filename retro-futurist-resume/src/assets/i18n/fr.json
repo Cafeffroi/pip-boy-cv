@@ -1,0 +1,38 @@
+{
+  "LOADING": {
+    "TITLE": "ATOMIC CORP",
+    "INITIALIZING": "INITIALISATION DU TERMINAL...",
+    "PROGRESS": "{{progress}}%"
+  },
+  "MENU": {
+    "HEADER": "DOSSIER PERSONNEL ATOMIC CORP",
+    "SELECT": "SÉLECTIONNER UNE OPTION:",
+    "RESUME": "CV",
+    "FULL_RESUME": "CV Complet",
+    "EXPERIENCE": "Expérience",
+    "SKILLS": "Compétences",
+    "EDUCATION": "Formation",
+    "HOBBIES": "Loisirs",
+    "CONTACT": "CONTACT"
+  },
+  "RESUME": {
+    "WORK_EXPERIENCE": "EXPÉRIENCE PROFESSIONNELLE:",
+    "TECHNICAL_SKILLS": "COMPÉTENCES TECHNIQUES:",
+    "EDUCATION_TITLE": "FORMATION:",
+    "PERSONAL_INTERESTS": "CENTRES D'INTÉRÊT:",
+    "LOADING": "CHARGEMENT DES DONNÉES..."
+  },
+  "CONTACT": {
+    "TITLE": "FORMULAIRE DE CONTACT:",
+    "NAME": "NOM:",
+    "EMAIL": "EMAIL:",
+    "MESSAGE": "MESSAGE:",
+    "SUBMIT": "[TRANSMETTRE MESSAGE]",
+    "SUCCESS": "MESSAGE TRANSMIS AVEC SUCCÈS"
+  },
+  "NAVIGATION": {
+    "BACK": "RETOUR",
+    "THEME_GREEN": "AMBRE",
+    "THEME_AMBER": "VERT"
+  }
+}

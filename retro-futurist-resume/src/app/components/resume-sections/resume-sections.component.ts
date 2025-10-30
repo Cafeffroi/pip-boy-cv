@@ -5,11 +5,12 @@ import { filter } from 'rxjs/operators';
 import { ResumeDataService } from '../../services/resume-data.service';
 import { ThemeService } from '../../services/theme.service';
 import { ResumeData } from '../../models/resume.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-resume-sections',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './resume-sections.component.html',
   styleUrls: ['./resume-sections.component.scss'],
 })
