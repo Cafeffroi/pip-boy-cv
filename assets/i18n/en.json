@@ -1,0 +1,49 @@
+{
+  "LOADING": {
+    "TITLE": "ATOMIC CORP",
+    "INITIALIZING": "INITIALIZING TERMINAL...",
+    "PROGRESS": "{{progress}}%"
+  },
+  "MENU": {
+    "HEADER": "ATOMIC CORP PERSONNEL FILE",
+    "SELECT": "SELECT OPTION:",
+    "RESUME": "RESUME",
+    "FULL_RESUME": "Full Resume",
+    "EXPERIENCE": "Experience",
+    "SKILLS": "Skills",
+    "EDUCATION": "Education",
+    "HOBBIES": "Hobbies",
+    "CONTACT": "CONTACT"
+  },
+  "RESUME": {
+    "HEADER": "PERSONNEL FILE",
+    "NAME": "NAME:",
+    "POSITION": "POSITION:",
+    "CLEARANCE": "CLEARANCE:",
+    "CONTACT": "CONTACT:",
+    "SUMMARY_TITLE": "SUMMARY",
+    "WORK_EXPERIENCE": "WORK EXPERIENCE",
+    "KEY_ACHIEVEMENTS": "Key Achievements:",
+    "TECHNICAL_SKILLS": "TECHNICAL SKILLS",
+    "SOFT_SKILLS": "SOFT SKILLS",
+    "LANGUAGES": "LANGUAGES",
+    "EDUCATION_TITLE": "EDUCATION",
+    "FOCUS": "Focus:",
+    "PERSONAL_INTERESTS": "PERSONAL INTERESTS",
+    "END_OF_FILE": "END OF FILE",
+    "LOADING": "LOADING DATA..."
+  },
+  "CONTACT": {
+    "TITLE": "CONTACT FORM:",
+    "NAME": "NAME:",
+    "EMAIL": "EMAIL:",
+    "MESSAGE": "MESSAGE:",
+    "SUBMIT": "[TRANSMIT MESSAGE]",
+    "SUCCESS": "MESSAGE TRANSMITTED SUCCESSFULLY"
+  },
+  "NAVIGATION": {
+    "BACK": "BACK",
+    "THEME_GREEN": "AMBER",
+    "THEME_AMBER": "GREEN"
+  }
+}

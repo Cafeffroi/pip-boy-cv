@@ -1,0 +1,74 @@
+{
+  "name": "François RINGLER",
+  "position": "Senior Software Engineer",
+  "clearance": "Level 7",
+  "email": "francois.ringler@gmail.com",
+  "summary": "Highly skilled software engineer with 8+ years of experience in developing robust applications for pre-war technology systems. Specializes in terminal interfaces and vault security protocols. Proven track record in leading development teams and implementing critical infrastructure systems.",
+  "resume": {
+    "experience": [
+      {
+        "title": "Senior Software Engineer",
+        "company": "Viveris",
+        "period": "01/2025 - Present",
+        "description": "Leading development of critical vault systems and terminal interfaces. Implemented security protocols for nuclear facilities. Managed a team of 5 engineers in delivering mission-critical applications for radiation-hardened environments.\n\nKey Achievements:\n- Reduced system vulnerabilities by 87%\n- Implemented new terminal security protocols\n- Led migration to updated vault control systems"
+      },
+      {
+        "title": "Software Developer",
+        "company": "Veepee",
+        "period": "2017 - 2025",
+        "description": "Developed control systems for automated robots and security terminals. Maintained legacy COBOL systems for critical infrastructure. Collaborated with hardware teams to optimize robot response times."
+      },
+      {
+        "title": "Software Developer",
+        "company": "Voyager Moins Cher",
+        "period": "2012 - 2016",
+        "description": "Assisted in development of vault management systems and resource allocation algorithms. Implemented monitoring systems for environmental controls."
+      },
+      {
+        "title": "Junior Software Developer",
+        "company": "DIGITAS",
+        "period": "2008 - 2012",
+        "description": "Assisted in development of vault management systems and resource allocation algorithms. Implemented monitoring systems for environmental controls."
+      }
+    ],
+    "technicalSkills": [
+      { "name": "C# .NET", "level": 8 },
+      { "name": "Typescript", "level": 7 },
+      { "name": "Angular", "level": 6 },
+      { "name": "Vue.js & React", "level": 4 },
+      { "name": "Robot Control Systems", "level": 8 },
+      { "name": "Vault-Tec Certified", "level": 10 },
+      { "name": "Radiation Hardened Code", "level": 7 },
+      { "name": "Legacy System Maintenance", "level": 8 }
+    ],
+    "softSkills": [
+      { "name": "Team Leadership", "level": 9 },
+      { "name": "Project Management", "level": 8 },
+      { "name": "Communication", "level": 8 },
+      { "name": "Problem Solving", "level": 9 },
+      { "name": "Adaptability", "level": 7 }
+    ],
+    "languages": [
+      { "name": "French", "level": "Native" },
+      { "name": "English", "level": "Fluent" }
+    ],
+    "schools": [
+      {
+        "degree": "Diplôme Ingénieur Informatique, option MSI (Multimédia et Science de l'Information)",
+        "school": "EPITA",
+        "year": "2008"
+      },
+      {
+        "degree": "Bac S, option Science de l'Ingénieur",
+        "school": "Lycée Blaise Pascal, COLMAR (68)",
+        "year": "2003"
+      }
+    ],
+    "hobbies": [
+      "Jeux vidéo",
+      "Sports de combat & Arts martiaux (Boxe & Penchak Silat)",
+      "Lancer de haches",
+      "Littérature (Fantastique et Sci-Fi)"
+    ]
+  }
+}
