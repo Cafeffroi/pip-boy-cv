@@ -1,4 +1,5 @@
 {
+  "homepage" : "https://cafeffroi.github.io/pip-boy-cv/",
   "name": "retro-futurist-resume",
   "version": "0.0.0",
   "scripts": {
@@ -6,7 +7,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "github-build": "ng build --configuration production --base-href=/pip-boy-cv/",
+    "github-deploy": "npx angular-cli-ghpages --dir=dist/retro-futurist-resume/browser --no-silent"
   },
   "private": true,
   "dependencies": {

@@ -18,13 +18,10 @@
       (click)="navigateTo('resume-full')"
       [ngStyle]="{ color: currentTheme?.primary }"
     >
-      &gt; {{ "MENU.RESUME" | translate }}
+      1 &gt; {{ "MENU.RESUME" | translate }}
     </div>
 
     <div class="submenu">
-      <div class="submenu-item" (click)="navigateTo('resume-full')">
-        1) {{ "MENU.FULL_RESUME" | translate }}
-      </div>
       <div class="submenu-item" (click)="navigateTo('experience')">
         2) {{ "MENU.EXPERIENCE" | translate }}
       </div>
