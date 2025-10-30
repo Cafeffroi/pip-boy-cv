@@ -147,11 +147,12 @@
       font-size: var(--large-font-size);
       font-weight: bold;
       flex-shrink: 0;
+      animation: blink-cursor 1s infinite;
     }
 
     .command-input {
       flex: 1;
-      min-width: 0; // Important for flex items
+      min-width: 0;
       background-color: transparent;
       border: none;
       font-family: 'VT323', 'Courier New', monospace;
@@ -159,6 +160,7 @@
       padding: 5px;
       outline: none;
       border-bottom: 2px solid var(--primary-color);
+      cursor: text;
 
       &::placeholder {
         color: var(--secondary-color);
@@ -185,6 +187,15 @@
     max-height: 200px;
     overflow-y: auto;
     box-sizing: border-box;
+  }
+}
+
+@keyframes blink-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.5;
   }
 }
 

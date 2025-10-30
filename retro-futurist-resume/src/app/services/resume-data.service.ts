@@ -14,10 +14,8 @@ export class ResumeDataService {
   constructor(private http: HttpClient) {}
 
   loadResumeData(): Observable<ResumeData> {
-    console.log('Loading resume data from assets/data/resume.json');
     return this.http.get<ResumeData>('assets/data/resume.json').pipe(
       tap((data) => {
-        console.log('Resume data loaded:', data);
         this.resumeDataSubject.next(data);
       }),
       catchError((error) => {

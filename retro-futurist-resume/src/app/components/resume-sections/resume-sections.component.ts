@@ -43,7 +43,6 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
         .pipe(filter((data) => data !== null))
         .subscribe((data) => {
           this.resumeData = data;
-          console.log('Resume data received in component:', data);
           if (this.section === 'resume-full') {
             setTimeout(() => this.typewriterEffect(), 100);
           }

@@ -73,31 +73,57 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Listen for any click in the document and refocus command line
+  // Listen for clicks but be smart about it
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (!this.isLoading) {
+      const target = event.target as HTMLElement;
+
+      // Don't refocus if clicking on form elements
+      if (this.isFormElement(target)) {
+        return;
+      }
+
       // Small delay to let other click handlers execute first
       setTimeout(() => this.focusCommandLine(), 0);
     }
   }
 
-  // Listen for any focus change and refocus command line
+  // Only refocus if we're not in a form element
   @HostListener('document:focusin', ['$event'])
   onFocusIn(event: FocusEvent): void {
     if (!this.isLoading && event.target !== this.commandInput?.nativeElement) {
-      // Don't steal focus from input/textarea elements in contact form
       const target = event.target as HTMLElement;
-      if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
-        setTimeout(() => this.focusCommandLine(), 0);
+
+      // Don't steal focus from form elements
+      if (this.isFormElement(target)) {
+        return;
       }
+
+      setTimeout(() => this.focusCommandLine(), 0);
     }
+  }
+
+  // Helper method to check if an element is a form input
+  private isFormElement(element: HTMLElement): boolean {
+    if (!element) return false;
+
+    const tagName = element.tagName.toLowerCase();
+    const isInput =
+      tagName === 'input' || tagName === 'textarea' || tagName === 'button';
+
+    // Also check if element is inside the contact form
+    const isInContactForm = element.closest('app-contact-form') !== null;
+
+    // Also check if it's the command input itself
+    const isCommandInput = element === this.commandInput?.nativeElement;
+
+    return (isInput && isInContactForm) || isCommandInput;
   }
 
   ngOnInit(): void {
     this.resumeService.loadResumeData().subscribe({
       next: (data) => {
-        console.log('Resume data loaded successfully', data);
         this.dataLoaded = true;
         this.checkIfReadyToShow();
       },
@@ -123,21 +149,30 @@ export class AppComponent implements OnInit {
   }
 
   private focusCommandLine(): void {
-    if (this.commandInput?.nativeElement) {
-      this.commandInput.nativeElement.focus();
+    if (
+      this.commandInput?.nativeElement &&
+      document.activeElement !== this.commandInput.nativeElement
+    ) {
+      // Only focus if we're not already in a form element
+      const activeElement = document.activeElement as HTMLElement;
+      if (!this.isFormElement(activeElement)) {
+        this.commandInput.nativeElement.focus();
+      }
     }
   }
 
   onViewChange(view: string): void {
     this.currentView = view;
-    // Refocus after view change
-    setTimeout(() => this.focusCommandLine(), 0);
+    // Refocus after view change (unless going to contact form)
+    if (view !== 'contact') {
+      setTimeout(() => this.focusCommandLine(), 50);
+    }
   }
 
   goBack(): void {
     this.currentView = 'menu';
     // Refocus after navigation
-    setTimeout(() => this.focusCommandLine(), 0);
+    setTimeout(() => this.focusCommandLine(), 50);
   }
 
   toggleTheme(): void {
