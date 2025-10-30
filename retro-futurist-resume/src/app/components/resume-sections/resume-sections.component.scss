@@ -48,6 +48,23 @@
 }
 
 .skills-section {
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .skills-column {
+    .section-title {
+      margin-bottom: 20px;
+    }
+  }
+
   .skills-list {
     display: flex;
     flex-direction: column;
@@ -87,6 +104,25 @@
       .skill-level-text {
         font-size: var(--small-font-size);
         margin-left: 5px;
+      }
+    }
+  }
+
+  .languages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .language-item {
+      font-size: var(--large-font-size);
+      padding-left: 10px;
+
+      .language-name {
+        margin-right: 10px;
+      }
+
+      .language-level {
+        color: var(--secondary-color);
       }
     }
   }

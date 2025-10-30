@@ -23,19 +23,19 @@
 
     <div class="submenu">
       <div class="submenu-item" (click)="navigateTo('resume-full')">
-        - {{ "MENU.FULL_RESUME" | translate }}
+        1) {{ "MENU.FULL_RESUME" | translate }}
       </div>
       <div class="submenu-item" (click)="navigateTo('experience')">
-        - {{ "MENU.EXPERIENCE" | translate }}
+        2) {{ "MENU.EXPERIENCE" | translate }}
       </div>
       <div class="submenu-item" (click)="navigateTo('skills')">
-        - {{ "MENU.SKILLS" | translate }}
+        3) {{ "MENU.SKILLS" | translate }}
       </div>
       <div class="submenu-item" (click)="navigateTo('schools')">
-        - {{ "MENU.EDUCATION" | translate }}
+        4) {{ "MENU.EDUCATION" | translate }}
       </div>
       <div class="submenu-item" (click)="navigateTo('hobbies')">
-        - {{ "MENU.HOBBIES" | translate }}
+        5) {{ "MENU.HOBBIES" | translate }}
       </div>
     </div>
 
@@ -44,7 +44,7 @@
       (click)="navigateTo('contact')"
       [ngStyle]="{ color: currentTheme?.primary }"
     >
-      &gt; {{ "MENU.CONTACT" | translate }}
+      6 > {{ "MENU.CONTACT" | translate }}
     </div>
   </div>
 </div>

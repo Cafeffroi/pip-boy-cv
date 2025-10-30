@@ -76,5 +76,32 @@
         <app-contact-form *ngIf="currentView === 'contact'"> </app-contact-form>
       </div>
     </div>
+
+    <!-- Command Line -->
+    <div
+      class="command-line"
+      [ngStyle]="{
+        'border-top': '2px solid ' + currentTheme?.primary,
+        'background-color': currentTheme?.background
+      }"
+    >
+      <div class="command-wrapper">
+        <span class="command-prompt">&gt;</span>
+        <input
+          #commandInput
+          type="text"
+          class="command-input"
+          [(ngModel)]="commandText"
+          (keydown.enter)="executeCommand()"
+          [ngStyle]="{
+            color: currentTheme?.primary
+          }"
+          placeholder="Type 'help' for commands..."
+        />
+      </div>
+      <div class="command-hint" *ngIf="showCommandHint">
+        {{ commandHint }}
+      </div>
+    </div>
   </div>
 </div>
