@@ -31,6 +31,11 @@
     margin-top: 10px;
     font-size: var(--base-font-size);
     
+    &.selected {
+      background-color: var(--primary-color);
+      color: var(--background-color) !important;
+    }
+
     &:hover {
       background-color: var(--primary-color);
       color: var(--background-color) !important;
@@ -41,15 +46,27 @@
     margin-left: 40px;
     font-size: var(--base-font-size);
     margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     
     .submenu-item {
       cursor: pointer;
-      padding: 5px;
+      padding: 8px 12px;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      transition: all 0.2s;
+      display: block;
+      width: fit-content;
       
+      &.selected {
+        background-color: var(--primary-color);
+        color: var(--background-color) !important;
+      }
+
       &:hover {
-        text-decoration: underline;
+        background-color: var(--primary-color);
+        color: var(--background-color) !important;
       }
     }
   }

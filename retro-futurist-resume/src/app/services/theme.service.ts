@@ -14,16 +14,16 @@ export interface Theme {
 export class ThemeService {
   private themes = {
     green: {
-      primary: '#00ff00',
-      secondary: '#00aa00',
+      primary: '#1aff80', // R: 26, G: 255, B: 128
+      secondary: '#15cc66',
       background: '#001100',
-      glow: 'rgba(0, 255, 0, 0.5)',
+      glow: 'rgba(26, 255, 128, 0.5)',
     },
     amber: {
-      primary: '#ffaa00',
-      secondary: '#cc8800',
+      primary: '#ffb642', // R: 255, G: 182, B: 66
+      secondary: '#cc9235',
       background: '#110800',
-      glow: 'rgba(255, 170, 0, 0.5)',
+      glow: 'rgba(255, 182, 66, 0.5)',
     },
   };
 

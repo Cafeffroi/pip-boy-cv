@@ -229,22 +229,14 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    // Handle 'back' command
-    if (cmd === 'back') {
-      if (this.currentView !== 'menu') {
-        this.goBack();
-        this.showFeedback('NAVIGATION.BACK');
-      } else {
+    // Handle 'back' command - always go to menu
+    if (cmd === 'back' || cmd === 'menu' || cmd === 'home') {
+      if (this.currentView === 'menu') {
         this.showFeedback('Already at main menu');
+      } else {
+        this.goBack();
+        this.showFeedback('Returned to main menu');
       }
-      this.commandText = '';
-      return;
-    }
-
-    // Handle 'menu' or 'home' command
-    if (cmd === 'menu' || cmd === 'home') {
-      this.goBack();
-      this.showFeedback('Returned to main menu');
       this.commandText = '';
       return;
     }
@@ -315,8 +307,7 @@ Navigation:
   4 - Education
   5 - Hobbies
   6 - Contact
-  back - Go back to menu
-  menu/home - Go to main menu
+  back/menu/home - Go to main menu
   
 Settings:
   green - Switch to green theme

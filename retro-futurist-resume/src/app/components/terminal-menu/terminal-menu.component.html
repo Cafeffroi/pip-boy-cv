@@ -13,35 +13,104 @@
   <div class="menu-content">
     <div class="menu-title">{{ "MENU.SELECT" | translate }}</div>
 
+    <!-- Full Resume (Main Item) -->
     <div
       class="menu-item"
-      (click)="navigateTo('resume-full')"
-      [ngStyle]="{ color: currentTheme?.primary }"
+      [class.selected]="isSelected(0)"
+      (click)="selectItem(0)"
+      (mouseenter)="onMouseEnter(0)"
+      [ngStyle]="{
+        'background-color': isSelected(0)
+          ? currentTheme?.primary
+          : 'transparent',
+        color: isSelected(0) ? currentTheme?.background : currentTheme?.primary
+      }"
     >
-      1 &gt; {{ "MENU.RESUME" | translate }}
+      1 &gt; {{ getMenuItemLabel(0) | translate }}
     </div>
 
+    <!-- Sub Items -->
     <div class="submenu">
-      <div class="submenu-item" (click)="navigateTo('experience')">
-        2) {{ "MENU.EXPERIENCE" | translate }}
+      <div
+        class="submenu-item"
+        [class.selected]="isSelected(1)"
+        (click)="selectItem(1)"
+        (mouseenter)="onMouseEnter(1)"
+        [ngStyle]="{
+          'background-color': isSelected(1)
+            ? currentTheme?.primary
+            : 'transparent',
+          color: isSelected(1)
+            ? currentTheme?.background
+            : currentTheme?.primary
+        }"
+      >
+        2) {{ getMenuItemLabel(1) | translate }}
       </div>
-      <div class="submenu-item" (click)="navigateTo('skills')">
-        3) {{ "MENU.SKILLS" | translate }}
+      <div
+        class="submenu-item"
+        [class.selected]="isSelected(2)"
+        (click)="selectItem(2)"
+        (mouseenter)="onMouseEnter(2)"
+        [ngStyle]="{
+          'background-color': isSelected(2)
+            ? currentTheme?.primary
+            : 'transparent',
+          color: isSelected(2)
+            ? currentTheme?.background
+            : currentTheme?.primary
+        }"
+      >
+        3) {{ getMenuItemLabel(2) | translate }}
       </div>
-      <div class="submenu-item" (click)="navigateTo('schools')">
-        4) {{ "MENU.EDUCATION" | translate }}
+      <div
+        class="submenu-item"
+        [class.selected]="isSelected(3)"
+        (click)="selectItem(3)"
+        (mouseenter)="onMouseEnter(3)"
+        [ngStyle]="{
+          'background-color': isSelected(3)
+            ? currentTheme?.primary
+            : 'transparent',
+          color: isSelected(3)
+            ? currentTheme?.background
+            : currentTheme?.primary
+        }"
+      >
+        4) {{ getMenuItemLabel(3) | translate }}
       </div>
-      <div class="submenu-item" (click)="navigateTo('hobbies')">
-        5) {{ "MENU.HOBBIES" | translate }}
+      <div
+        class="submenu-item"
+        [class.selected]="isSelected(4)"
+        (click)="selectItem(4)"
+        (mouseenter)="onMouseEnter(4)"
+        [ngStyle]="{
+          'background-color': isSelected(4)
+            ? currentTheme?.primary
+            : 'transparent',
+          color: isSelected(4)
+            ? currentTheme?.background
+            : currentTheme?.primary
+        }"
+      >
+        5) {{ getMenuItemLabel(4) | translate }}
       </div>
     </div>
 
+    <!-- Contact (Main Item) -->
     <div
       class="menu-item"
-      (click)="navigateTo('contact')"
-      [ngStyle]="{ color: currentTheme?.primary }"
+      [class.selected]="isSelected(5)"
+      (click)="selectItem(5)"
+      (mouseenter)="onMouseEnter(5)"
+      [ngStyle]="{
+        'background-color': isSelected(5)
+          ? currentTheme?.primary
+          : 'transparent',
+        color: isSelected(5) ? currentTheme?.background : currentTheme?.primary
+      }"
     >
-      6 > {{ "MENU.CONTACT" | translate }}
+      6 &gt; {{ getMenuItemLabel(5) | translate }}
     </div>
   </div>
 </div>

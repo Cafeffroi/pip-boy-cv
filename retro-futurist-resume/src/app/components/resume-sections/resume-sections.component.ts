@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  HostListener,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -81,11 +88,18 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
     return this.sanitizer.sanitize(1, formatted) || '';
   }
 
+  private getSeparator(): string {
+    const terminalWidth = Math.min(1200, window.innerWidth - 40);
+    const charWidth = 13;
+    const numberOfChars = Math.floor(terminalWidth / charWidth);
+
+    return '═'.repeat(numberOfChars - 5);
+  }
+
   private generateFullResume(): string {
     if (!this.resumeData) return '';
 
-    const separator =
-      '═══════════════════════════════════════════════════════════════════════════════════════';
+    const separator = this.getSeparator();
     let resume = '';
 
     // Header
@@ -196,12 +210,30 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
         clearInterval(this.typewriterInterval);
         this.typewriterInterval = null;
       }
-    }, 0.5);
+    }, 1.67);
   }
 
   getSkillBlocks(level: number): boolean[] {
     return Array(10)
       .fill(false)
       .map((_, i) => i < level);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    // Only regenerate if we're viewing the full resume
+    if (this.section === 'resume-full' && this.resumeData) {
+      // Debounce the resize to avoid too many regenerations
+      if (this.typewriterInterval) {
+        clearInterval(this.typewriterInterval);
+      }
+
+      // Wait a bit before regenerating
+      setTimeout(() => {
+        if (this.section === 'resume-full') {
+          this.typewriterEffect();
+        }
+      }, 500);
+    }
   }
 }
