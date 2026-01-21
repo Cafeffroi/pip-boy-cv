@@ -1,73 +1,73 @@
 {
   "name": "François RINGLER",
-  "position": "Senior Software Engineer",
+  "position": "Senior Developer",
   "email": "francois.ringler@gmail.com",
-  "summary": "Highly skilled software engineer with 8+ years of experience in developing robust applications for pre-war technology systems. Specializes in terminal interfaces and vault security protocols. Proven track record in leading development teams and implementing critical infrastructure systems.",
+  "summary": "With 17 years of experience as a full-stack web developer, I have continuously evolved in the field of software development. My expertise lies primarily in back-end development, where I have worked exclusively with ASP.NET / .NET to build services and APIs. On the front-end side, I have developed versatility by exploring various technologies, including ASP.NET MVC and Angular.\n\nMy skill set also extends to user interface aspects, where I am comfortable with HTML and CSS, as well as frameworks such as Bootstrap and Material. In parallel, my database skills cover a range of solutions including MySQL, MongoDB, and PostgreSQL.\n\nPassionate about the rapid evolution of technology, I have a growing interest in generative artificial intelligence, particularly models such as Claude.",
   "resume": {
     "experience": [
       {
-        "title": "Senior Software Engineer",
+        "title": "Senior Developer",
         "company": "Viveris (ESN)",
         "period": "01/2025 - Present",
-        "description": "En mission chez Liebherr.<br/>Développement d'une plateforme permettant de suivre les KPIs des machines (excavatrices, camions) à travers le monde avec une partie données lives. (C#, Node.JS, Vue.js / Typescript, PostgreSQL, EventHub, Redis)"
+        "description": "On assignment at Liebherr.\nDevelopment of a platform to track machine KPIs (excavators, trucks) worldwide, including a live data component. (C#, Node.js, Vue.js / TypeScript, PostgreSQL, EventHub, Redis)"
       },
       {
-        "title": "Software Developer",
+        "title": "Developer",
         "company": "Veepee",
-        "period": "2017 - 2025",
-        "description": "Developed control systems for automated robots and security terminals. Maintained legacy COBOL systems for critical infrastructure. Collaborated with hardware teams to optimize robot response times."
+        "period": "2016 - 2024",
+        "description": "- 2023-2024: developer in the digital asset management team (.NET, React, MongoDB, Postgres)\n- 2017-2023: developer in the team responsible for creating tools to improve sales production (.NET, Angular, MariaDB, MongoDB)\n- 2016-2017: lead developer for the launch of Veepee’s marketplace project (.NET Core, React, Izberg)"
       },
       {
-        "title": "Software Developer",
+        "title": "Developer",
         "company": "Voyager Moins Cher",
         "period": "2012 - 2016",
-        "description": "Assisted in development of vault management systems and resource allocation algorithms. Implemented monitoring systems for environmental controls."
+        "description": "Maintenance of the brand’s legacy websites (2 years).\nThen redesign of the main website in C#/MVC with a mobile version."
       },
       {
-        "title": "Junior Software Developer",
+        "title": "Junior Developer",
         "company": "DIGITAS",
         "period": "2008 - 2012",
-        "description": "Assisted in development of vault management systems and resource allocation algorithms. Implemented monitoring systems for environmental controls."
+        "description": "I contributed to the design and development of websites for major brands such as: Wesco, Nissan, Cultura, L’Oréal, Lenôtre, and Dassault Falcon."
       }
     ],
     "technicalSkills": [
-      { "name": "C# .NET", "level": 8 },
-      { "name": "Typescript", "level": 7 },
-      { "name": "Angular", "level": 6 },
+      { "name": "C# .NET 9+", "level": 8 },
+      { "name": "TypeScript", "level": 7 },
+      { "name": "Angular 18+", "level": 6 },
       { "name": "Vue.js & React", "level": 4 },
-      { "name": "Robot Control Systems", "level": 8 },
-      { "name": "Vault-Tec Certified", "level": 10 },
-      { "name": "Radiation Hardened Code", "level": 7 },
-      { "name": "Legacy System Maintenance", "level": 8 }
+      { "name": "Databases (PostgreSQL, MySQL, MongoDB)", "level": 7 },
+      { "name": "Infrastructure (Docker, Azure, GitLab, GitHub)", "level": 6 },
+      { "name": "HTML & CSS", "level": 6 }
     ],
     "softSkills": [
-      { "name": "Team Leadership", "level": 9 },
-      { "name": "Project Management", "level": 8 },
-      { "name": "Communication", "level": 8 },
-      { "name": "Problem Solving", "level": 9 },
-      { "name": "Adaptability", "level": 7 }
+      { "name": "Logical reasoning and problem solving", "level": 9 },
+      { "name": "Strong verbal and written communication skills", "level": 8 },
+      { "name": "Communication", "level": 6 },
+      { "name": "Ability to work independently", "level": 8 },
+      { "name": "Adaptability and pragmatism", "level": 7 },
+      { "name": "Team spirit", "level": 7 }
     ],
     "languages": [
-      { "name": "French", "level": "Native" },
-      { "name": "English", "level": "Fluent" }
+      { "name": "French", "level": "Native language" },
+      { "name": "English", "level": "Bilingual" }
     ],
     "schools": [
       {
-        "degree": "Diplôme Ingénieur Informatique, option MSI (Multimédia et Science de l'Information)",
+        "degree": "Computer Engineering Degree, MSI specialization (Multimedia and Information Science)",
         "school": "EPITA",
         "year": "2008"
       },
       {
-        "degree": "Bac S, option Science de l'Ingénieur",
-        "school": "Lycée Blaise Pascal, COLMAR (68)",
+        "degree": "Scientific Baccalaureate, Engineering Sciences specialization",
+        "school": "Blaise Pascal High School, COLMAR (68)",
         "year": "2003"
       }
     ],
     "hobbies": [
-      "Jeux vidéo",
-      "Sports de combat & Arts martiaux (Boxe & Penchak Silat)",
-      "Lancer de haches",
-      "Littérature (Fantastique et Sci-Fi)"
+      "Video games",
+      "Combat sports & martial arts (Boxing & Pencak Silat)",
+      "Axe throwing",
+      "Literature (Fantasy and Sci-Fi)"
     ]
   }
 }

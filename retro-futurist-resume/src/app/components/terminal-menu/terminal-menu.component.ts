@@ -46,7 +46,7 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.themeService.currentTheme$.subscribe((theme) => {
         this.currentTheme = this.themeService.getThemeColors(theme);
-      })
+      }),
     );
   }
 
@@ -58,8 +58,10 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
   handleKeyDown(event: KeyboardEvent): void {
     // Check if command input has text
     const commandInput = document.querySelector(
-      '.command-input'
+      '.command-input',
     ) as HTMLInputElement;
+
+    console.log('input: ' + commandInput.value);
 
     // If command input has text and Enter is pressed, let the command line handle it
     if (
@@ -79,6 +81,7 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
       event.preventDefault();
       this.selectedIndex = (this.selectedIndex + 1) % this.menuItems.length;
     } else if (event.key === 'Enter') {
+      console.log('navigate');
       event.preventDefault();
       this.selectItem(this.selectedIndex);
     }

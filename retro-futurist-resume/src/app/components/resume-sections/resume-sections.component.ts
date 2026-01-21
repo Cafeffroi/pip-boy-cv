@@ -93,7 +93,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
     const charWidth = 13;
     const numberOfChars = Math.floor(terminalWidth / charWidth);
 
-    return '═'.repeat(numberOfChars - 5);
+    return '═'.repeat(numberOfChars - 12);
   }
 
   private generateFullResume(): string {
