@@ -45,5 +45,9 @@
     "BACK": "RETOUR",
     "THEME_GREEN": "AMBRE",
     "THEME_AMBER": "VERT"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Entrée Non Trouvée",
+    "MESSAGE": "Le CV demandé n'a pas pu être trouvé dans la base de données. Veuillez vérifier l'URL ou retourner au menu principal."
   }
 }

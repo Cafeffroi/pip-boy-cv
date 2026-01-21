@@ -35,14 +35,14 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
     private resumeService: ResumeDataService,
     private themeService: ThemeService,
     private translate: TranslateService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
     this.subscription.add(
       this.themeService.currentTheme$.subscribe((theme) => {
         this.currentTheme = this.themeService.getThemeColors(theme);
-      })
+      }),
     );
 
     this.subscription.add(
@@ -53,7 +53,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
           if (this.section === 'resume-full') {
             setTimeout(() => this.typewriterEffect(), 100);
           }
-        })
+        }),
     );
 
     // Re-generate full resume when language changes
@@ -62,7 +62,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
         if (this.section === 'resume-full' && this.resumeData) {
           setTimeout(() => this.typewriterEffect(), 100);
         }
-      })
+      }),
     );
   }
 
@@ -110,22 +110,19 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
     resume += `${this.translate.instant('RESUME.POSITION')} ${
       this.resumeData.position
     }\n`;
-    resume += `${this.translate.instant('RESUME.CLEARANCE')} ${
-      this.resumeData.clearance
-    }\n`;
     resume += `${this.translate.instant('RESUME.CONTACT')} ${
       this.resumeData.email
     }\n\n`;
 
     // Summary
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.SUMMARY_TITLE'
+      'RESUME.SUMMARY_TITLE',
     )}\n${separator}\n\n`;
     resume += `${this.resumeData.summary}\n\n`;
 
     // Work Experience
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.WORK_EXPERIENCE'
+      'RESUME.WORK_EXPERIENCE',
     )}\n${separator}\n\n`;
     this.resumeData.resume.experience.forEach((exp) => {
       resume += `[${exp.title}]\n`;
@@ -135,7 +132,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
 
     // Technical Skills
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.TECHNICAL_SKILLS'
+      'RESUME.TECHNICAL_SKILLS',
     )}\n${separator}\n\n`;
     this.resumeData.resume.technicalSkills.forEach((skill) => {
       const blocks = '█'.repeat(skill.level) + '░'.repeat(10 - skill.level);
@@ -145,7 +142,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
 
     // Soft Skills
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.SOFT_SKILLS'
+      'RESUME.SOFT_SKILLS',
     )}\n${separator}\n\n`;
     this.resumeData.resume.softSkills.forEach((skill) => {
       const blocks = '█'.repeat(skill.level) + '░'.repeat(10 - skill.level);
@@ -155,7 +152,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
 
     // Languages
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.LANGUAGES'
+      'RESUME.LANGUAGES',
     )}\n${separator}\n\n`;
     this.resumeData.resume.languages.forEach((lang) => {
       resume += `${lang.name} - ${lang.level}\n`;
@@ -164,7 +161,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
 
     // Education
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.EDUCATION_TITLE'
+      'RESUME.EDUCATION_TITLE',
     )}\n${separator}\n\n`;
     this.resumeData.resume.schools.forEach((school) => {
       resume += `[${school.degree}]\n`;
@@ -173,7 +170,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
 
     // Personal Interests
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.PERSONAL_INTERESTS'
+      'RESUME.PERSONAL_INTERESTS',
     )}\n${separator}\n\n`;
     this.resumeData.resume.hobbies.forEach((hobby) => {
       resume += `* ${hobby}\n`;
@@ -182,7 +179,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
 
     // Footer
     resume += `${separator}\n${this.translate.instant(
-      'RESUME.END_OF_FILE'
+      'RESUME.END_OF_FILE',
     )}\n${separator}`;
 
     return resume;

@@ -16,7 +16,7 @@ export class LanguageService {
 
   constructor(private translate: TranslateService) {
     // Set default language
-    this.translate.setDefaultLang('fr');
+    this.translate.setFallbackLang('fr');
 
     // Try to get language from localStorage or use default
     const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
@@ -36,6 +36,7 @@ export class LanguageService {
   toggleLanguage(): void {
     const currentLang = this.getCurrentLanguage();
     const newLang = currentLang === 'fr' ? 'en' : 'fr';
+    console.log('selected language : ' + newLang);
     this.setLanguage(newLang);
   }
 }

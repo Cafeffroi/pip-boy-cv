@@ -24,7 +24,6 @@ export interface Language {
 export interface ResumeData {
   name: string;
   position: string;
-  clearance: string;
   email: string;
   summary: string;
   resume: {

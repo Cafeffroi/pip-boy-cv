@@ -45,5 +45,9 @@
     "BACK": "BACK",
     "THEME_GREEN": "AMBER",
     "THEME_AMBER": "GREEN"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Entry Not Found",
+    "MESSAGE": "The requested resume could not be found in the database. Please check the URL or return to the main menu."
   }
 }

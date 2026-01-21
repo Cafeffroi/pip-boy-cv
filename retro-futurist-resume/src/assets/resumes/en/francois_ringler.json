@@ -1,16 +1,15 @@
 {
   "name": "François RINGLER",
   "position": "Senior Software Engineer",
-  "clearance": "Level 7",
   "email": "francois.ringler@gmail.com",
   "summary": "Highly skilled software engineer with 8+ years of experience in developing robust applications for pre-war technology systems. Specializes in terminal interfaces and vault security protocols. Proven track record in leading development teams and implementing critical infrastructure systems.",
   "resume": {
     "experience": [
       {
         "title": "Senior Software Engineer",
-        "company": "Viveris",
+        "company": "Viveris (ESN)",
         "period": "01/2025 - Present",
-        "description": "Leading development of critical vault systems and terminal interfaces. Implemented security protocols for nuclear facilities. Managed a team of 5 engineers in delivering mission-critical applications for radiation-hardened environments.\n\nKey Achievements:\n- Reduced system vulnerabilities by 87%\n- Implemented new terminal security protocols\n- Led migration to updated vault control systems"
+        "description": "En mission chez Liebherr.<br/>Développement d'une plateforme permettant de suivre les KPIs des machines (excavatrices, camions) à travers le monde avec une partie données lives. (C#, Node.JS, Vue.js / Typescript, PostgreSQL, EventHub, Redis)"
       },
       {
         "title": "Software Developer",

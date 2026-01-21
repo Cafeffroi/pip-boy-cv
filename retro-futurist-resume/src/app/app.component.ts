@@ -1,13 +1,16 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   ViewChild,
   ElementRef,
   HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { ThemeService } from './services/theme.service';
 import { ResumeDataService } from './services/resume-data.service';
 import { LanguageService } from './services/language.service';
@@ -16,6 +19,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
 import { TerminalMenuComponent } from './components/terminal-menu/terminal-menu.component';
 import { ResumeSectionsComponent } from './components/resume-sections/resume-sections.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @Component({
   selector: 'app-root',
@@ -28,11 +32,12 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
     TerminalMenuComponent,
     ResumeSectionsComponent,
     ContactFormComponent,
+    NotFoundComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('commandInput') commandInput!: ElementRef<HTMLInputElement>;
 
   isLoading = true;
@@ -42,6 +47,8 @@ export class AppComponent implements OnInit {
   dataLoaded = false;
   loadingScreenComplete = false;
   currentLanguage = 'fr';
+  resumeId: string | null = null;
+  resumeNotFound = false;
 
   // Command line
   commandText = '';
@@ -57,28 +64,46 @@ export class AppComponent implements OnInit {
     '6': 'contact',
   };
 
+  private subscriptions = new Subscription();
+
   constructor(
+    private route: ActivatedRoute,
     private themeService: ThemeService,
     private resumeService: ResumeDataService,
     private languageService: LanguageService,
     private translate: TranslateService,
-    private audioService: AudioService
+    private audioService: AudioService,
   ) {
-    this.themeService.currentTheme$.subscribe((theme) => {
-      this.themeName = theme;
-      this.currentTheme = this.themeService.getThemeColors(theme);
-      this.updateCSSVariables();
-    });
+    this.subscriptions.add(
+      this.themeService.currentTheme$.subscribe((theme) => {
+        this.themeName = theme;
+        this.currentTheme = this.themeService.getThemeColors(theme);
+        this.updateCSSVariables();
+      }),
+    );
 
-    this.languageService.currentLanguage$.subscribe((lang) => {
-      this.currentLanguage = lang;
-    });
+    this.subscriptions.add(
+      this.languageService.currentLanguage$.subscribe((lang) => {
+        this.currentLanguage = lang;
+      }),
+    );
+
+    // Subscribe to resume not found status
+    this.subscriptions.add(
+      this.resumeService.resumeNotFound$.subscribe((notFound) => {
+        this.resumeNotFound = notFound;
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   // Global keyboard listener for sound effects
   @HostListener('document:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
-    if (!this.isLoading) {
+    if (!this.isLoading && !this.resumeNotFound) {
       // Don't play sound for special keys
       const specialKeys = [
         'Shift',
@@ -109,7 +134,7 @@ export class AppComponent implements OnInit {
   // Listen for clicks but be smart about it
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.isLoading) {
+    if (!this.isLoading && !this.resumeNotFound) {
       const target = event.target as HTMLElement;
 
       // Don't refocus if clicking on form elements
@@ -125,7 +150,11 @@ export class AppComponent implements OnInit {
   // Only refocus if we're not in a form element
   @HostListener('document:focusin', ['$event'])
   onFocusIn(event: FocusEvent): void {
-    if (!this.isLoading && event.target !== this.commandInput?.nativeElement) {
+    if (
+      !this.isLoading &&
+      !this.resumeNotFound &&
+      event.target !== this.commandInput?.nativeElement
+    ) {
       const target = event.target as HTMLElement;
 
       // Don't steal focus from form elements
@@ -155,18 +184,47 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.resumeService.loadResumeData().subscribe({
-      next: (data) => {
-        console.log('Resume data loaded successfully', data);
-        this.dataLoaded = true;
-        this.checkIfReadyToShow();
-      },
-      error: (error) => {
-        console.error('Error loading resume data:', error);
-        this.dataLoaded = true;
-        this.checkIfReadyToShow();
-      },
-    });
+    // Get the resume ID from the route parameter
+    this.subscriptions.add(
+      this.route.params.subscribe((params) => {
+        this.resumeId = params['resumeId'] || null;
+        this.loadResume();
+      }),
+    );
+
+    // Reload resume when language changes
+    this.subscriptions.add(
+      this.translate.onLangChange.subscribe(() => {
+        console.log('Language changed, reloading resume...');
+        this.loadResume();
+      }),
+    );
+  }
+
+  private loadResume(): void {
+    // Load resume data with the ID from URL and current language
+    this.resumeService
+      .loadResumeData(
+        this.resumeId || undefined,
+        this.languageService.getCurrentLanguage() || undefined,
+      )
+      .subscribe({
+        next: (data) => {
+          console.log('Resume data loaded successfully', data);
+          if (this.resumeId) {
+            console.log(`Loaded resume: ${this.resumeId}`);
+          }
+          this.dataLoaded = true;
+          this.resumeNotFound = false;
+          this.checkIfReadyToShow();
+        },
+        error: (error) => {
+          console.error('Error loading resume data:', error);
+          this.dataLoaded = true;
+          this.resumeNotFound = true;
+          this.checkIfReadyToShow();
+        },
+      });
   }
 
   onLoadingComplete(): void {
@@ -177,8 +235,10 @@ export class AppComponent implements OnInit {
   private checkIfReadyToShow(): void {
     if (this.loadingScreenComplete && this.dataLoaded) {
       this.isLoading = false;
-      // Focus command input after a short delay
-      setTimeout(() => this.focusCommandLine(), 100);
+      // Focus command input after a short delay (only if resume found)
+      if (!this.resumeNotFound) {
+        setTimeout(() => this.focusCommandLine(), 100);
+      }
     }
   }
 
@@ -292,7 +352,7 @@ export class AppComponent implements OnInit {
 
     // Unknown command
     this.showFeedback(
-      `Unknown command: "${cmd}". Type 'help' for available commands.`
+      `Unknown command: "${cmd}". Type 'help' for available commands.`,
     );
     this.commandText = '';
   }
@@ -336,19 +396,19 @@ Other:
     if (this.currentTheme) {
       document.documentElement.style.setProperty(
         '--primary-color',
-        this.currentTheme.primary
+        this.currentTheme.primary,
       );
       document.documentElement.style.setProperty(
         '--secondary-color',
-        this.currentTheme.secondary
+        this.currentTheme.secondary,
       );
       document.documentElement.style.setProperty(
         '--background-color',
-        this.currentTheme.background
+        this.currentTheme.background,
       );
       document.documentElement.style.setProperty(
         '--glow-color',
-        this.currentTheme.glow
+        this.currentTheme.glow,
       );
     }
   }
