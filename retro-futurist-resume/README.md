@@ -7,7 +7,14 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - translate help text
 - get sounds from nostromo nexus mod https://www.nexusmods.com/fallout4/mods/54725?tab=files&file_id=217803
 - add name to tab text
-- text contact form to send mail
+- test contact form to send mail
+
+## IN THE FUTURE
+
+- list of resumes before menu (name + post)
+- locked resumes
+- create resume (upload resume + AI translation)
+- test direct link (loading + redirect to menu + link to list of personnel)
 
 ## Development server
 
