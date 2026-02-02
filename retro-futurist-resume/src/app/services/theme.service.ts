@@ -30,10 +30,28 @@ export class ThemeService {
   private currentThemeSubject = new BehaviorSubject<'green' | 'amber'>('green');
   currentTheme$ = this.currentThemeSubject.asObservable();
 
+  constructor() {
+    // Try to get theme from localStorage or use green as default
+    const savedTheme = localStorage.getItem('preferredTheme');
+
+    // If there's a saved theme preference, use it; otherwise default to green
+    if (savedTheme && (savedTheme === 'green' || savedTheme === 'amber')) {
+      this.setTheme(savedTheme as 'green' | 'amber');
+    } else {
+      // Explicitly set to green
+      this.setTheme('green');
+    }
+  }
+
+  setTheme(theme: 'green' | 'amber'): void {
+    this.currentThemeSubject.next(theme);
+    localStorage.setItem('preferredTheme', theme);
+  }
+
   toggleTheme(): void {
     const newTheme =
       this.currentThemeSubject.value === 'green' ? 'amber' : 'green';
-    this.currentThemeSubject.next(newTheme);
+    this.setTheme(newTheme);
   }
 
   getThemeColors(themeName: 'green' | 'amber'): Theme {

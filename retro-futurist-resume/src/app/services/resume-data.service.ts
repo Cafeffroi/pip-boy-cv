@@ -35,16 +35,12 @@ export class ResumeDataService {
     // Build path with language folder: assets/resumes/{lang}/{fileName}.json
     const resumePath = `assets/resumes/${lang}/${fileName}.json`;
 
-    console.log(`Loading resume from: ${resumePath}`);
-
     return this.http.get<ResumeData>(resumePath).pipe(
       tap((data) => {
         this.resumeDataSubject.next(data);
         this.resumeNotFoundSubject.next(false);
       }),
       catchError((error) => {
-        console.error(`Error loading resume data from ${resumePath}:`, error);
-
         // Mark as not found
         this.resumeNotFoundSubject.next(true);
         this.resumeDataSubject.next(null);

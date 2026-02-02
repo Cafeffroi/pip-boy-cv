@@ -2,7 +2,7 @@
   class="loading-container"
   [ngStyle]="{
     'background-color': currentTheme?.background,
-    color: currentTheme?.primary
+    color: currentTheme?.primary,
   }"
 >
   <pre
@@ -25,14 +25,14 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠓⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-ATOMIC CORP
+ATOMIC LABS
   </pre>
 
   <div
     class="loading-box"
     [ngStyle]="{
       border: '2px solid ' + currentTheme?.primary,
-      'box-shadow': '0 0 20px ' + currentTheme?.glow
+      'box-shadow': '0 0 20px ' + currentTheme?.glow,
     }"
   >
     <div class="loading-text">{{ "LOADING.INITIALIZING" | translate }}</div>
@@ -45,7 +45,7 @@ ATOMIC CORP
         [ngStyle]="{
           'width.%': loadingProgress,
           'background-color': currentTheme?.primary,
-          'box-shadow': '0 0 10px ' + currentTheme?.glow
+          'box-shadow': '0 0 10px ' + currentTheme?.glow,
         }"
       ></div>
     </div>

@@ -8,8 +8,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
+import { ResumeDataService } from '../../services/resume-data.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 interface MenuItem {
   id: string;
@@ -29,6 +31,8 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
 
   currentTheme: any;
   selectedIndex = 0;
+  headerText = '';
+
   menuItems: MenuItem[] = [
     { id: 'resume-full', label: 'MENU.FULL_RESUME', isSubItem: false },
     { id: 'experience', label: 'MENU.EXPERIENCE', isSubItem: true },
@@ -40,13 +44,27 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private resumeService: ResumeDataService,
+  ) {}
 
   ngOnInit(): void {
     this.subscription.add(
       this.themeService.currentTheme$.subscribe((theme) => {
         this.currentTheme = this.themeService.getThemeColors(theme);
       }),
+    );
+
+    // Subscribe to resume data to get name and position
+    this.subscription.add(
+      this.resumeService.resumeData$
+        .pipe(filter((data) => data !== null))
+        .subscribe((data) => {
+          if (data) {
+            this.headerText = `${data.name} : ${data.position}`;
+          }
+        }),
     );
   }
 
@@ -56,20 +74,27 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
-    // Check if command input has text
+    // Check if command input has text or was recently used
     const commandInput = document.querySelector(
       '.command-input',
     ) as HTMLInputElement;
 
-    console.log('input: ' + commandInput.value);
-
-    // If command input has text and Enter is pressed, let the command line handle it
-    if (
-      event.key === 'Enter' &&
-      commandInput &&
-      commandInput.value.trim() !== ''
-    ) {
+    // If command input has ANY text, don't handle keyboard events
+    if (commandInput && commandInput.value.trim() !== '') {
       return;
+    }
+
+    // Debounce Enter key - ignore if a command was just executed (within 200ms)
+    if (event.key === 'Enter') {
+      const lastCommandTime = (window as any).lastCommandTime || 0;
+      const now = Date.now();
+      const timeSinceCommand = now - lastCommandTime;
+
+      if (timeSinceCommand < 200) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
     }
 
     if (event.key === 'ArrowUp') {
@@ -81,10 +106,19 @@ export class TerminalMenuComponent implements OnInit, OnDestroy {
       event.preventDefault();
       this.selectedIndex = (this.selectedIndex + 1) % this.menuItems.length;
     } else if (event.key === 'Enter') {
-      console.log('navigate');
       event.preventDefault();
       this.selectItem(this.selectedIndex);
     }
+  }
+
+  getSeparator(): string {
+    if (!this.headerText) {
+      return '═'.repeat(40); // Default fallback
+    }
+
+    // Add 6 extra characters for the spaces and box characters: "║  TEXT  ║"
+    const totalLength = this.headerText.length + 6;
+    return '═'.repeat(totalLength);
   }
 
   navigateTo(view: string): void {

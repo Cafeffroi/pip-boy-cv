@@ -36,7 +36,7 @@
       { "name": "Angular 18+", "level": 6 },
       { "name": "Vue.js & React", "level": 4 },
       { "name": "Database (PostgreSQL, MySQL, MongoDB)", "level": 7 },
-      { "name": "Infra (Docker, Azure, Gitlab, Github)", "level": 6 },
+      { "name": "Infrastructure (Docker, Azure, Gitlab, Github)", "level": 6 },
       { "name": "HTML & CSS", "level": 6 }
     ],
     "softSkills": [

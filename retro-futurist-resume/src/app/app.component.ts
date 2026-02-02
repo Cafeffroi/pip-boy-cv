@@ -32,7 +32,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     TerminalMenuComponent,
     ResumeSectionsComponent,
     ContactFormComponent,
-    NotFoundComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -84,7 +83,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.languageService.currentLanguage$.subscribe((lang) => {
+        const previousLanguage = this.currentLanguage;
         this.currentLanguage = lang;
+
+        // Only reload if language actually changed and we're not in initial load
+        if (previousLanguage !== lang && this.loadingScreenComplete) {
+          this.loadResume();
+        }
       }),
     );
 
@@ -192,34 +197,23 @@ export class AppComponent implements OnInit, OnDestroy {
       }),
     );
 
-    // Reload resume when language changes
-    this.subscriptions.add(
-      this.translate.onLangChange.subscribe(() => {
-        console.log('Language changed, reloading resume...');
-        this.loadResume();
-      }),
-    );
+    // Listen for command execution globally and store timestamp
+    window.addEventListener('commandExecuted', () => {
+      (window as any).lastCommandTime = Date.now();
+    });
   }
 
   private loadResume(): void {
     // Load resume data with the ID from URL and current language
     this.resumeService
-      .loadResumeData(
-        this.resumeId || undefined,
-        this.languageService.getCurrentLanguage() || undefined,
-      )
+      .loadResumeData(this.resumeId || undefined, this.currentLanguage)
       .subscribe({
         next: (data) => {
-          console.log('Resume data loaded successfully', data);
-          if (this.resumeId) {
-            console.log(`Loaded resume: ${this.resumeId}`);
-          }
           this.dataLoaded = true;
           this.resumeNotFound = false;
           this.checkIfReadyToShow();
         },
         error: (error) => {
-          console.error('Error loading resume data:', error);
           this.dataLoaded = true;
           this.resumeNotFound = true;
           this.checkIfReadyToShow();
@@ -289,22 +283,35 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // Dispatch custom event to let menu know a command was executed
+    window.dispatchEvent(new Event('commandExecuted'));
+
     // Handle 'back' command - always go to menu
     if (cmd === 'back' || cmd === 'menu' || cmd === 'home') {
+      // Clear command BEFORE doing anything else
+      this.commandText = '';
+
       if (this.currentView === 'menu') {
         this.showFeedback('Already at main menu');
       } else {
         this.goBack();
         this.showFeedback('Returned to main menu');
       }
-      this.commandText = '';
+
+      // Blur the input briefly to prevent enter from being processed again
+      if (this.commandInput?.nativeElement) {
+        this.commandInput.nativeElement.blur();
+        setTimeout(() => {
+          this.focusCommandLine();
+        }, 100);
+      }
       return;
     }
 
     // Handle 'help' command
     if (cmd === 'help') {
-      this.showHelp();
       this.commandText = '';
+      this.showHelp();
       return;
     }
 
@@ -317,14 +324,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Handle numeric commands
     if (this.commandMap[cmd]) {
+      this.commandText = '';
       this.onViewChange(this.commandMap[cmd]);
       this.showFeedback(`Navigated to section ${cmd}`);
-      this.commandText = '';
       return;
     }
 
     // Handle 'green' or 'amber' theme commands
     if (cmd === 'green' || cmd === 'amber') {
+      this.commandText = '';
       if (
         (cmd === 'green' && this.themeName !== 'green') ||
         (cmd === 'amber' && this.themeName !== 'amber')
@@ -334,27 +342,26 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         this.showFeedback(`Already using ${cmd} theme`);
       }
-      this.commandText = '';
       return;
     }
 
     // Handle 'en' or 'fr' language commands
     if (cmd === 'en' || cmd === 'fr') {
+      this.commandText = '';
       if (this.currentLanguage !== cmd) {
         this.toggleLanguage();
         this.showFeedback(`Language changed to ${cmd.toUpperCase()}`);
       } else {
         this.showFeedback(`Already using ${cmd.toUpperCase()}`);
       }
-      this.commandText = '';
       return;
     }
 
     // Unknown command
+    this.commandText = '';
     this.showFeedback(
       `Unknown command: "${cmd}". Type 'help' for available commands.`,
     );
-    this.commandText = '';
   }
 
   private showHelp(): void {
