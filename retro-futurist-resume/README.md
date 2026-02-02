@@ -2,6 +2,13 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
 
+## RAF
+
+- translate help text
+- get sounds from nostromo nexus mod https://www.nexusmods.com/fallout4/mods/54725?tab=files&file_id=217803
+- add name to tab text
+- text contact form to send mail
+
 ## Development server
 
 To start a local development server, run:
