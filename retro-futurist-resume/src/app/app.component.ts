@@ -88,6 +88,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
         // Only reload if language actually changed and we're not in initial load
         if (previousLanguage !== lang && this.loadingScreenComplete) {
+          console.log(
+            `Language changed from ${previousLanguage} to ${lang}, reloading resume...`,
+          );
           this.loadResume();
         }
       }),
@@ -199,21 +202,29 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Listen for command execution globally and store timestamp
     window.addEventListener('commandExecuted', () => {
+      console.log('Command executed - storing timestamp');
       (window as any).lastCommandTime = Date.now();
     });
   }
 
   private loadResume(): void {
+    console.log(`Loading resume with language: ${this.currentLanguage}`);
+
     // Load resume data with the ID from URL and current language
     this.resumeService
       .loadResumeData(this.resumeId || undefined, this.currentLanguage)
       .subscribe({
         next: (data) => {
+          console.log('Resume data loaded successfully', data);
+          if (this.resumeId) {
+            console.log(`Loaded resume: ${this.resumeId}`);
+          }
           this.dataLoaded = true;
           this.resumeNotFound = false;
           this.checkIfReadyToShow();
         },
         error: (error) => {
+          console.error('Error loading resume data:', error);
           this.dataLoaded = true;
           this.resumeNotFound = true;
           this.checkIfReadyToShow();
@@ -365,26 +376,26 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private showHelp(): void {
-    const helpText = `Available commands:
+    const helpText = `${this.translate.instant('HELP.TITLE')}
     
-Navigation:
-  1 - Full Resume
-  2 - Experience
-  3 - Skills
-  4 - Education
-  5 - Hobbies
-  6 - Contact
-  back/menu/home - Go to main menu
+${this.translate.instant('HELP.NAVIGATION')}
+  ${this.translate.instant('HELP.NAV_1')}
+  ${this.translate.instant('HELP.NAV_2')}
+  ${this.translate.instant('HELP.NAV_3')}
+  ${this.translate.instant('HELP.NAV_4')}
+  ${this.translate.instant('HELP.NAV_5')}
+  ${this.translate.instant('HELP.NAV_6')}
+  ${this.translate.instant('HELP.NAV_BACK')}
   
-Settings:
-  green - Switch to green theme
-  amber - Switch to amber theme
-  en - Switch to English
-  fr - Switch to French
+${this.translate.instant('HELP.SETTINGS')}
+  ${this.translate.instant('HELP.SET_GREEN')}
+  ${this.translate.instant('HELP.SET_AMBER')}
+  ${this.translate.instant('HELP.SET_EN')}
+  ${this.translate.instant('HELP.SET_FR')}
   
-Other:
-  help - Show this help
-  clear/cls - Clear command line`;
+${this.translate.instant('HELP.OTHER')}
+  ${this.translate.instant('HELP.OTHER_HELP')}
+  ${this.translate.instant('HELP.OTHER_CLEAR')}`;
 
     this.commandHint = helpText;
     this.showCommandHint = true;

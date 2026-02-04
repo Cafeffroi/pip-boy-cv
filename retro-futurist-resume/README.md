@@ -4,7 +4,6 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## RAF
 
-- translate help text
 - get sounds from nostromo nexus mod https://www.nexusmods.com/fallout4/mods/54725?tab=files&file_id=217803
 - add name to tab text
 - test contact form to send mail

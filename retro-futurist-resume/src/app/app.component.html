@@ -2,7 +2,7 @@
   class="app-container"
   [ngStyle]="{
     'background-color': currentTheme?.background,
-    color: currentTheme?.primary
+    color: currentTheme?.primary,
   }"
 >
   <!-- CRT Scanline Effect -->
@@ -24,7 +24,7 @@
           class="back-button"
           [ngStyle]="{
             border: '1px solid ' + currentTheme?.primary,
-            color: currentTheme?.primary
+            color: currentTheme?.primary,
           }"
         >
           &lt; {{ "NAVIGATION.BACK" | translate }}
@@ -36,7 +36,7 @@
             class="lang-button"
             [ngStyle]="{
               border: '1px solid ' + currentTheme?.primary,
-              color: currentTheme?.primary
+              color: currentTheme?.primary,
             }"
           >
             [{{ currentLanguage === "fr" ? "EN" : "FR" }}]
@@ -47,7 +47,7 @@
             class="theme-button"
             [ngStyle]="{
               border: '1px solid ' + currentTheme?.primary,
-              color: currentTheme?.primary
+              color: currentTheme?.primary,
             }"
           >
             [{{
@@ -82,7 +82,7 @@
       class="command-line"
       [ngStyle]="{
         'border-top': '2px solid ' + currentTheme?.primary,
-        'background-color': currentTheme?.background
+        'background-color': currentTheme?.background,
       }"
     >
       <div class="command-wrapper">
@@ -94,9 +94,9 @@
           [(ngModel)]="commandText"
           (keydown.enter)="executeCommand()"
           [ngStyle]="{
-            color: currentTheme?.primary
+            color: currentTheme?.primary,
           }"
-          placeholder="Type 'help' for commands..."
+          [placeholder]="'COMMAND.PLACEHOLDER' | translate"
         />
       </div>
       <div class="command-hint" *ngIf="showCommandHint">
