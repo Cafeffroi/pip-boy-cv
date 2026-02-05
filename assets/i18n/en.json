@@ -45,5 +45,31 @@
     "BACK": "BACK",
     "THEME_GREEN": "AMBER",
     "THEME_AMBER": "GREEN"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Entry Not Found",
+    "MESSAGE": "The requested resume could not be found in the database. Please check the URL or return to the main menu."
+  },
+  "HELP": {
+    "TITLE": "Available commands:",
+    "NAVIGATION": "Navigation:",
+    "NAV_1": "1 - Full Resume",
+    "NAV_2": "2 - Experience",
+    "NAV_3": "3 - Skills",
+    "NAV_4": "4 - Education",
+    "NAV_5": "5 - Hobbies",
+    "NAV_6": "6 - Contact",
+    "NAV_BACK": "back/menu/home - Go to main menu",
+    "SETTINGS": "Settings:",
+    "SET_GREEN": "green - Switch to green theme",
+    "SET_AMBER": "amber - Switch to amber theme",
+    "SET_EN": "en - Switch to English",
+    "SET_FR": "fr - Switch to French",
+    "OTHER": "Other:",
+    "OTHER_HELP": "help - Show this help",
+    "OTHER_CLEAR": "clear/cls - Clear command line"
+  },
+  "COMMAND": {
+    "PLACEHOLDER": "Type 'help' for commands..."
   }
 }

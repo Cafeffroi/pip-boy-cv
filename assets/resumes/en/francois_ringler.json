@@ -1,0 +1,73 @@
+{
+  "name": "François RINGLER",
+  "position": "Senior Developer",
+  "email": "francois.ringler@gmail.com",
+  "summary": "With 17 years of experience as a full-stack web developer, I have continuously evolved in the field of software development. My expertise lies primarily in back-end development, where I have worked exclusively with ASP.NET / .NET to build services and APIs. On the front-end side, I have developed versatility by exploring various technologies, including ASP.NET MVC and Angular.\n\nMy skill set also extends to user interface aspects, where I am comfortable with HTML and CSS, as well as frameworks such as Bootstrap and Material. In parallel, my database skills cover a range of solutions including MySQL, MongoDB, and PostgreSQL.\n\nPassionate about the rapid evolution of technology, I have a growing interest in generative artificial intelligence, particularly models such as Claude.",
+  "resume": {
+    "experience": [
+      {
+        "title": "Senior Developer",
+        "company": "Viveris (ESN)",
+        "period": "01/2025 - Present",
+        "description": "On assignment at Liebherr.\nDevelopment of a platform to track machine KPIs (excavators, trucks) worldwide, including a live data component. (C#, Node.js, Vue.js / TypeScript, PostgreSQL, EventHub, Redis)"
+      },
+      {
+        "title": "Developer",
+        "company": "Veepee",
+        "period": "2016 - 2024",
+        "description": "- 2023-2024: developer in the digital asset management team (.NET, React, MongoDB, Postgres)\n- 2017-2023: developer in the team responsible for creating tools to improve sales production (.NET, Angular, MariaDB, MongoDB)\n- 2016-2017: lead developer for the launch of Veepee’s marketplace project (.NET Core, React, Izberg)"
+      },
+      {
+        "title": "Developer",
+        "company": "Voyager Moins Cher",
+        "period": "2012 - 2016",
+        "description": "Maintenance of the brand’s legacy websites (2 years).\nThen redesign of the main website in C#/MVC with a mobile version."
+      },
+      {
+        "title": "Junior Developer",
+        "company": "DIGITAS",
+        "period": "2008 - 2012",
+        "description": "I contributed to the design and development of websites for major brands such as: Wesco, Nissan, Cultura, L’Oréal, Lenôtre, and Dassault Falcon."
+      }
+    ],
+    "technicalSkills": [
+      { "name": "C# .NET 9+", "level": 8 },
+      { "name": "TypeScript", "level": 7 },
+      { "name": "Angular 18+", "level": 6 },
+      { "name": "Vue.js & React", "level": 4 },
+      { "name": "Databases (PostgreSQL, MySQL, MongoDB)", "level": 7 },
+      { "name": "Infrastructure (Docker, Azure, GitLab, GitHub)", "level": 6 },
+      { "name": "HTML & CSS", "level": 6 }
+    ],
+    "softSkills": [
+      { "name": "Logical reasoning and problem solving", "level": 9 },
+      { "name": "Strong verbal and written communication skills", "level": 8 },
+      { "name": "Communication", "level": 6 },
+      { "name": "Ability to work independently", "level": 8 },
+      { "name": "Adaptability and pragmatism", "level": 7 },
+      { "name": "Team spirit", "level": 7 }
+    ],
+    "languages": [
+      { "name": "French", "level": "Native language" },
+      { "name": "English", "level": "Bilingual" }
+    ],
+    "schools": [
+      {
+        "degree": "Computer Engineering Degree, MSI specialization (Multimedia and Information Science)",
+        "school": "EPITA",
+        "year": "2008"
+      },
+      {
+        "degree": "Scientific Baccalaureate, Engineering Sciences specialization",
+        "school": "Blaise Pascal High School, COLMAR (68)",
+        "year": "2003"
+      }
+    ],
+    "hobbies": [
+      "Video games",
+      "Combat sports & martial arts (Boxing & Pencak Silat)",
+      "Axe throwing",
+      "Literature (Fantasy and Sci-Fi)"
+    ]
+  }
+}

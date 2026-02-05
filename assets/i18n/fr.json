@@ -45,5 +45,31 @@
     "BACK": "RETOUR",
     "THEME_GREEN": "AMBRE",
     "THEME_AMBER": "VERT"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Entrée Non Trouvée",
+    "MESSAGE": "Le CV demandé n'a pas pu être trouvé dans la base de données. Veuillez vérifier l'URL ou retourner au menu principal."
+  },
+  "HELP": {
+    "TITLE": "Commandes disponibles:",
+    "NAVIGATION": "Navigation:",
+    "NAV_1": "1 - CV Complet",
+    "NAV_2": "2 - Expérience",
+    "NAV_3": "3 - Compétences",
+    "NAV_4": "4 - Formation",
+    "NAV_5": "5 - Loisirs",
+    "NAV_6": "6 - Contact",
+    "NAV_BACK": "back/menu/home - Retour au menu principal",
+    "SETTINGS": "Paramètres:",
+    "SET_GREEN": "green - Passer au thème vert",
+    "SET_AMBER": "amber - Passer au thème ambre",
+    "SET_EN": "en - Passer en anglais",
+    "SET_FR": "fr - Passer en français",
+    "OTHER": "Autre:",
+    "OTHER_HELP": "help - Afficher cette aide",
+    "OTHER_CLEAR": "clear/cls - Effacer la ligne de commande"
+  },
+  "COMMAND": {
+    "PLACEHOLDER": "Tapez 'help' pour les commandes..."
   }
 }
