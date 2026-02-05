@@ -5,10 +5,21 @@
     *ngIf="formSubmitted"
     class="success-message"
     [ngStyle]="{
-      border: '2px solid ' + currentTheme?.primary
+      border: '2px solid ' + currentTheme?.primary,
     }"
   >
     {{ "CONTACT.SUCCESS" | translate }}
+  </div>
+
+  <div
+    *ngIf="errorMessage"
+    class="error-message"
+    [ngStyle]="{
+      border: '2px solid #ff0000',
+      color: '#ff0000',
+    }"
+  >
+    {{ errorMessage }}
   </div>
 
   <div *ngIf="!formSubmitted" class="form-container">
@@ -17,9 +28,10 @@
       <input
         type="text"
         [(ngModel)]="contactForm.name"
+        [disabled]="isSubmitting"
         [ngStyle]="{
           border: '1px solid ' + currentTheme?.primary,
-          color: currentTheme?.primary
+          color: currentTheme?.primary,
         }"
       />
     </div>
@@ -29,9 +41,10 @@
       <input
         type="email"
         [(ngModel)]="contactForm.email"
+        [disabled]="isSubmitting"
         [ngStyle]="{
           border: '1px solid ' + currentTheme?.primary,
-          color: currentTheme?.primary
+          color: currentTheme?.primary,
         }"
       />
     </div>
@@ -41,9 +54,10 @@
       <textarea
         [(ngModel)]="contactForm.message"
         rows="6"
+        [disabled]="isSubmitting"
         [ngStyle]="{
           border: '1px solid ' + currentTheme?.primary,
-          color: currentTheme?.primary
+          color: currentTheme?.primary,
         }"
       >
       </textarea>
@@ -52,12 +66,18 @@
     <button
       (click)="onSubmit()"
       class="submit-button"
+      [disabled]="isSubmitting"
       [ngStyle]="{
         border: '2px solid ' + currentTheme?.primary,
-        color: currentTheme?.primary
+        color: currentTheme?.primary,
+        opacity: isSubmitting ? 0.5 : 1,
       }"
     >
-      {{ "CONTACT.SUBMIT" | translate }}
+      {{
+        isSubmitting
+          ? ("CONTACT.SENDING" | translate)
+          : ("CONTACT.SUBMIT" | translate)
+      }}
     </button>
   </div>
 </div>

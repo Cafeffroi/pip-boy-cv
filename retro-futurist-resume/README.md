@@ -7,6 +7,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - get sounds from nostromo nexus mod https://www.nexusmods.com/fallout4/mods/54725?tab=files&file_id=217803
 - add name to tab text
 - test contact form to send mail
+- quicker full cv load
 
 ## IN THE FUTURE
 
@@ -48,6 +49,15 @@ ng build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Publishing
+
+To publish the project to github pages, run:
+
+```bash
+yarn github-build
+yarn github-deploy
+```
 
 ## Running unit tests
 
