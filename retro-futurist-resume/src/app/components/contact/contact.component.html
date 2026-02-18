@@ -1,0 +1,45 @@
+<div class="contact-container">
+  <div class="section-title">{{ "CONTACT.TITLE" | translate }}</div>
+
+  <div class="contact-list">
+    <div
+      *ngFor="let point of contactPoints; let i = index"
+      class="contact-item"
+      [ngStyle]="{
+        'border-left': '2px solid ' + currentTheme?.primary,
+      }"
+      (click)="copyToClipboard(point.value, i)"
+    >
+      <span class="contact-icon">{{ getIcon(point.type) }}</span>
+
+      <div class="contact-info">
+        <span class="contact-label">{{ point.label }}</span>
+        <span class="contact-value">
+          <a
+            *ngIf="point.url"
+            [href]="point.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            [ngStyle]="{ color: currentTheme?.primary }"
+            (click)="$event.stopPropagation()"
+          >
+            {{ point.value }}
+          </a>
+          <span *ngIf="!point.url">{{ point.value }}</span>
+        </span>
+      </div>
+
+      <span class="copy-icon" [ngStyle]="{ color: currentTheme?.primary }">
+        ⧉
+      </span>
+
+      <span
+        *ngIf="copiedIndex === i"
+        class="copied-feedback"
+        [ngStyle]="{ color: currentTheme?.primary }"
+      >
+        {{ "CONTACT.COPIED" | translate }}
+      </span>
+    </div>
+  </div>
+</div>

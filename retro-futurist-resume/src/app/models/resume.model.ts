@@ -21,11 +21,19 @@ export interface Language {
   level: string; // e.g., "Native", "Fluent", "Professional"
 }
 
+export interface ContactPoint {
+  type: string; // e.g., "email", "linkedin", "phone", "github"
+  label: string;
+  value: string;
+  url?: string; // optional clickable link
+}
+
 export interface ResumeData {
   name: string;
   position: string;
   email: string;
   summary: string;
+  contactPoints: ContactPoint[];
   resume: {
     experience: Experience[];
     technicalSkills: Skill[];

@@ -207,7 +207,7 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
         clearInterval(this.typewriterInterval);
         this.typewriterInterval = null;
       }
-    }, 1.67);
+    }, 0.5);
   }
 
   getSkillBlocks(level: number): boolean[] {

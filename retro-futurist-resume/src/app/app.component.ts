@@ -18,7 +18,7 @@ import { AudioService } from './services/audio.service';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { TerminalMenuComponent } from './components/terminal-menu/terminal-menu.component';
 import { ResumeSectionsComponent } from './components/resume-sections/resume-sections.component';
-import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @Component({
@@ -31,7 +31,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     LoadingScreenComponent,
     TerminalMenuComponent,
     ResumeSectionsComponent,
-    ContactFormComponent,
+    ContactComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -182,13 +182,10 @@ export class AppComponent implements OnInit, OnDestroy {
     const isInput =
       tagName === 'input' || tagName === 'textarea' || tagName === 'button';
 
-    // Also check if element is inside the contact form
-    const isInContactForm = element.closest('app-contact-form') !== null;
-
     // Also check if it's the command input itself
     const isCommandInput = element === this.commandInput?.nativeElement;
 
-    return (isInput && isInContactForm) || isCommandInput;
+    return (isInput && !isCommandInput) || isCommandInput;
   }
 
   ngOnInit(): void {
@@ -262,10 +259,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onViewChange(view: string): void {
     this.currentView = view;
-    // Refocus after view change (unless going to contact form)
-    if (view !== 'contact') {
-      setTimeout(() => this.focusCommandLine(), 50);
-    }
+    setTimeout(() => this.focusCommandLine(), 50);
   }
 
   goBack(): void {

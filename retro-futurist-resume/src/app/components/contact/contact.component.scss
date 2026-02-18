@@ -1,0 +1,109 @@
+.contact-container {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.section-title {
+  margin-bottom: 30px;
+  font-size: var(--title-font-size);
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color) !important;
+
+    .contact-icon,
+    .contact-info .contact-label,
+    .contact-info .contact-value,
+    .contact-info .contact-value a,
+    .copy-icon,
+    .copied-feedback {
+      color: var(--background-color) !important;
+    }
+
+    .copy-icon {
+      opacity: 1;
+    }
+  }
+
+  .contact-icon {
+    font-size: var(--large-font-size);
+    flex-shrink: 0;
+    width: 30px;
+    text-align: center;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+
+    .contact-label {
+      font-size: var(--small-font-size);
+      opacity: 0.6;
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: var(--base-font-size);
+      word-break: break-all;
+
+      a {
+        text-decoration: none;
+        transition: text-shadow 0.2s;
+
+        &:hover {
+          text-shadow: 0 0 8px var(--glow-color);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .copy-icon {
+    font-size: var(--large-font-size);
+    opacity: 0;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copied-feedback {
+    font-size: var(--small-font-size);
+    flex-shrink: 0;
+    animation: fadeInOut 2s ease-in-out;
+    white-space: nowrap;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
