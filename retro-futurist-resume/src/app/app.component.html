@@ -19,12 +19,12 @@
       <!-- Header with Back, Language and Theme buttons -->
       <div class="terminal-header">
         <button
-          *ngIf="currentView !== 'menu'"
           (click)="goBack()"
           class="back-button"
           [ngStyle]="{
             border: '1px solid ' + currentTheme?.primary,
             color: currentTheme?.primary,
+            visibility: currentView !== 'menu' ? 'visible' : 'hidden',
           }"
         >
           &lt; {{ "NAVIGATION.BACK" | translate }}
