@@ -6,6 +6,7 @@ import { ContactPoint } from '../../models/resume.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { decodeValue } from '../../utils/decode';
 
 @Component({
   selector: 'app-contact',
@@ -63,7 +64,13 @@ export class ContactComponent implements OnInit, OnDestroy {
     return icons[type] || '▸';
   }
 
-  copyToClipboard(value: string, index: number): void {
+  /** Decode an obfuscated value for display */
+  decode(encoded: string): string {
+    return decodeValue(encoded);
+  }
+
+  copyToClipboard(encodedValue: string, index: number): void {
+    const value = decodeValue(encodedValue);
     navigator.clipboard.writeText(value).then(() => {
       this.copiedIndex = index;
 

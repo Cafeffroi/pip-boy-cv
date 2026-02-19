@@ -17,15 +17,15 @@
         <span class="contact-value">
           <a
             *ngIf="point.url"
-            [href]="point.url"
+            [href]="decode(point.url)"
             target="_blank"
             rel="noopener noreferrer"
             [ngStyle]="{ color: currentTheme?.primary }"
             (click)="$event.stopPropagation()"
           >
-            {{ point.value }}
+            {{ decode(point.value) }}
           </a>
-          <span *ngIf="!point.url">{{ point.value }}</span>
+          <span *ngIf="!point.url">{{ decode(point.value) }}</span>
         </span>
       </div>
 

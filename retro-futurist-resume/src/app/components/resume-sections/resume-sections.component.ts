@@ -14,6 +14,7 @@ import { ThemeService } from '../../services/theme.service';
 import { ResumeData } from '../../models/resume.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { decodeValue } from '../../utils/decode';
 
 @Component({
   selector: 'app-resume-sections',

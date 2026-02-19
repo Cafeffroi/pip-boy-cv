@@ -32,6 +32,17 @@
 
         <div class="header-buttons">
           <button
+            (click)="toggleSound()"
+            class="sound-button"
+            [ngStyle]="{
+              border: '1px solid ' + currentTheme?.primary,
+              color: currentTheme?.primary,
+            }"
+          >
+            [{{ isMuted ? "🔇" : "🔊" }}]
+          </button>
+
+          <button
             (click)="toggleLanguage()"
             class="lang-button"
             [ngStyle]="{

@@ -7,19 +7,19 @@
     {
       "type": "email",
       "label": "Email",
-      "value": "francois.ringler@gmail.com",
-      "url": "mailto:francois.ringler@gmail.com"
+      "value": "ZnJhbmNvaXMucmluZ2xlckBnbWFpbC5jb20=",
+      "url": "bWFpbHRvOmZyYW5jb2lzLnJpbmdsZXJAZ21haWwuY29t"
     },
     {
       "type": "linkedin",
       "label": "LinkedIn",
       "value": "linkedin.com/in/francois-ringler",
-      "url": "https://www.linkedin.com/in/francois-ringler-02126634/"
+      "url": "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2ZyYW5jb2lzLXJpbmdsZXItMDIxMjY2MzQv"
     },
     {
       "type": "phone",
-      "label": "Téléphone",
-      "value": "+33 6 71 78 69 21"
+      "label": "Phone",
+      "value": "KzMzIDYgNzEgNzggNjkgMjE="
     }
   ],
   "resume": {

@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   dataLoaded = false;
   loadingScreenComplete = false;
   currentLanguage = 'fr';
+  isMuted = false;
   resumeId: string | null = null;
   resumeNotFound = false;
 
@@ -100,6 +101,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.resumeService.resumeNotFound$.subscribe((notFound) => {
         this.resumeNotFound = notFound;
+      }),
+    );
+
+    this.subscriptions.add(
+      this.audioService.muted$.subscribe((muted) => {
+        this.isMuted = muted;
       }),
     );
   }
@@ -271,6 +278,11 @@ export class AppComponent implements OnInit, OnDestroy {
   toggleTheme(): void {
     this.themeService.toggleTheme();
     // Refocus after theme change
+    setTimeout(() => this.focusCommandLine(), 0);
+  }
+
+  toggleSound(): void {
+    this.audioService.toggleMute();
     setTimeout(() => this.focusCommandLine(), 0);
   }
 
