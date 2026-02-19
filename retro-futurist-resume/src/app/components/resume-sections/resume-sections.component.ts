@@ -111,9 +111,9 @@ export class ResumeSectionsComponent implements OnInit, OnChanges, OnDestroy {
     resume += `${this.translate.instant('RESUME.POSITION')} ${
       this.resumeData.position
     }\n`;
-    resume += `${this.translate.instant('RESUME.CONTACT')} ${
-      this.resumeData.email
-    }\n\n`;
+    resume += `${this.translate.instant('RESUME.CONTACT')} ${decodeValue(
+      this.resumeData.email,
+    )}\n\n`;
 
     // Summary
     resume += `${separator}\n${this.translate.instant(

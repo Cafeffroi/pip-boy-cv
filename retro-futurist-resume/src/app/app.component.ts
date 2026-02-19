@@ -54,6 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
   commandText = '';
   commandHint = '';
   showCommandHint = false;
+  isHelpVisible = false;
 
   private commandMap: { [key: string]: string } = {
     '1': 'resume-full',
@@ -93,6 +94,11 @@ export class AppComponent implements OnInit, OnDestroy {
             `Language changed from ${previousLanguage} to ${lang}, reloading resume...`,
           );
           this.loadResume();
+
+          // Regenerate help text if it's currently displayed
+          if (this.showCommandHint && this.isHelpVisible) {
+            setTimeout(() => this.showHelp(), 100);
+          }
         }
       }),
     );
@@ -336,6 +342,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (cmd === 'clear' || cmd === 'cls') {
       this.commandText = '';
       this.showCommandHint = false;
+      this.isHelpVisible = false;
       return;
     }
 
@@ -405,11 +412,13 @@ ${this.translate.instant('HELP.OTHER')}
 
     this.commandHint = helpText;
     this.showCommandHint = true;
+    this.isHelpVisible = true;
   }
 
   private showFeedback(message: string): void {
     this.commandHint = message;
     this.showCommandHint = true;
+    this.isHelpVisible = false;
 
     setTimeout(() => {
       this.showCommandHint = false;

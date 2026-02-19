@@ -34,11 +34,13 @@
     &.selected {
       background-color: var(--primary-color);
       color: var(--background-color) !important;
+      animation: menu-blink 1.2s step-end infinite;
     }
 
     &:hover {
       background-color: var(--primary-color);
       color: var(--background-color) !important;
+      animation: none;
     }
   }
   
@@ -62,12 +64,23 @@
       &.selected {
         background-color: var(--primary-color);
         color: var(--background-color) !important;
+        animation: menu-blink 1.2s step-end infinite;
       }
 
       &:hover {
         background-color: var(--primary-color);
         color: var(--background-color) !important;
+        animation: none;
       }
     }
+  }
+}
+
+@keyframes menu-blink {
+  0%, 70% {
+    opacity: 1;
+  }
+  71%, 100% {
+    opacity: 0.3;
   }
 }
