@@ -1,8 +1,27 @@
 {
   "name": "François RINGLER",
   "position": "Senior Developer",
-  "email": "francois.ringler@gmail.com",
+  "email": "ZnJhbmNvaXMucmluZ2xlckBnbWFpbC5jb20",
   "summary": "With 17 years of experience as a full-stack web developer, I have continuously evolved in the field of software development. My expertise lies primarily in back-end development, where I have worked exclusively with ASP.NET / .NET to build services and APIs. On the front-end side, I have developed versatility by exploring various technologies, including ASP.NET MVC and Angular.\n\nMy skill set also extends to user interface aspects, where I am comfortable with HTML and CSS, as well as frameworks such as Bootstrap and Material. In parallel, my database skills cover a range of solutions including MySQL, MongoDB, and PostgreSQL.\n\nPassionate about the rapid evolution of technology, I have a growing interest in generative artificial intelligence, particularly models such as Claude.",
+  "contactPoints": [
+    {
+      "type": "email",
+      "label": "Email",
+      "value": "ZnJhbmNvaXMucmluZ2xlckBnbWFpbC5jb20=",
+      "url": "bWFpbHRvOmZyYW5jb2lzLnJpbmdsZXJAZ21haWwuY29t"
+    },
+    {
+      "type": "linkedin",
+      "label": "LinkedIn",
+      "value": "linkedin.com/in/francois-ringler",
+      "url": "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2ZyYW5jb2lzLXJpbmdsZXItMDIxMjY2MzQv"
+    },
+    {
+      "type": "phone",
+      "label": "Phone",
+      "value": "KzMzIDYgNzEgNzggNjkgMjE="
+    }
+  ],
   "resume": {
     "experience": [
       {
